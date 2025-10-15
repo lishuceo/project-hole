@@ -1,0 +1,38 @@
+{
+  "projectId": "p_jyzf",
+  "projectCopyPath": "C:\\Users\\jljia\\.sce\\openhands-kit\\projects\\p_jyzf",
+  "bindTime": "2025-10-15T15:39:17.913Z",
+  "version": "1.0.0",
+  "workspacePath": "C:\\Dev\\AIProject\\project-hole",
+  "workspaceStatus": {
+    "method": "copy",
+    "directories": {
+      "src": {
+        "success": true,
+        "method": "copy",
+        "needsSync": false
+      },
+      "AppBundle": {
+        "success": true,
+        "method": "copy",
+        "needsSync": false
+      },
+      "ui": {
+        "success": true,
+        "method": "copy",
+        "needsSync": false
+      },
+      "docs": {
+        "success": true,
+        "method": "copy",
+        "needsSync": false
+      }
+    }
+  },
+  "metadata": {
+    "lastInit": "2025-10-15T15:39:17.913Z",
+    "initMethod": "create",
+    "mcpVersion": "1.0.0",
+    "lastSync": "2025-10-15T15:39:17.913Z"
+  }
+}
