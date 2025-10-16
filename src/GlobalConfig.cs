@@ -55,11 +55,12 @@ public class GlobalConfig : IGameClass
             {"XianJianQiXiaZhuan", ScopeData.GameMode.XianJianQiXiaZhuan},
             {"AVGTest", ScopeData.GameMode.AVGTest},
             {"RPGRoleTest", ScopeData.GameMode.RPGRoleTest},
+            {"BlackHoleGame", ScopeData.GameMode.BlackHoleGame},
         };
         // Set the default game mode for testing, this will be used when the game is in testing mode.
         // GameDataGlobalConfig.TestGameMode = ScopeData.GameMode.TowerDefense;
         // GameDataGlobalConfig.TestGameMode = ScopeData.GameMode.ARPGMode;
-        GameDataGlobalConfig.TestGameMode = ScopeData.GameMode.RPGRoleTest;
+        GameDataGlobalConfig.TestGameMode = ScopeData.GameMode.BlackHoleGame;
         // GameDataGlobalConfig.TestGameMode = ScopeData.GameMode.XianJianQiXiaZhuan;
         // GameDataGlobalConfig.TestGameMode = ScopeData.GameMode.FlappyBird;
         // Set the single-player test slot ID, this defines which player slot the local player will use in

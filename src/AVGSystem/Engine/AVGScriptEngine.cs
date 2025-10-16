@@ -187,7 +187,7 @@ public static class AVGScriptEngine
         try
         {
             AVGFullScreen.SetBackground(node.ImagePath);
-            await Task.Delay(100); // 短暂延迟确保背景设置完成
+            await Game.Delay(TimeSpan.FromMilliseconds(100)); // 短暂延迟确保背景设置完成
         }
         catch (Exception ex)
         {

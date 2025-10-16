@@ -101,6 +101,7 @@ public partial class ScopeData : IGameClass
         public static readonly GameLink<GameDataGameMode, GameDataGameMode> XianJianQiXiaZhuan = new("XianJianQiXiaZhuan"u8); // 🗡️ 仙剑奇侠传
         public static readonly GameLink<GameDataGameMode, GameDataGameMode> AVGTest = new("AVGTest"u8); // 📖 AVG系统测试
         public static readonly GameLink<GameDataGameMode, GameDataGameMode> JsonScopeDataTest = new("$p_0tja.ScopeData.GameDataGameMode.TestGameMode.Root"u8);
+        public static readonly GameLink<GameDataGameMode, GameDataGameMode> BlackHoleGame = new("BlackHoleGame"u8); // 🕳️ 黑洞物理游戏
     }
 
     public static class Animation
@@ -192,6 +193,7 @@ public partial class ScopeData : IGameClass
         public static readonly GameLink<GameDataScene, GameDataScene> JumpJumpScene = new("jump_jump_scene"u8);
         public static readonly GameLink<GameDataScene, GameDataScene> TowerDefenseScene = new("tower_defense_scene"u8);
         public static readonly GameLink<GameDataScene, GameDataScene> RPGRoleTestScene = new("rpg_role_test_scene"u8);
+        public static readonly GameLink<GameDataScene, GameDataScene> BlackHoleScene = new("blackhole_scene"u8);
     }
 
     public static class Model
@@ -911,6 +913,17 @@ public partial class ScopeData : IGameClass
             OnLoaded = static (scene) => Game.Logger.LogInformation("⚔️ RPG Role Test Scene {scene} loaded", scene),
         };
 
+        // 黑洞游戏专用场景 - 干净的3D物理场景
+        _ = new GameDataScene(Scene.BlackHoleScene)
+        {
+            DefaultCamera = Camera.DefaultCamera,
+            Name = "Black Hole Physics Scene",
+            HostedSceneTag = new HostedSceneTag("blackhole_scene"u8, "new_scene_1"u8),
+            Size = new(2000, 2000),  // 2000x2000 game area
+            OnLoaded = static (scene) => Game.Logger.LogInformation("🕳️ Black Hole Scene {scene} loaded", scene),
+            PlacedPlayerObjects = [] // Empty - game creates its own physics objects
+        };
+
         // JumpJump游戏专用场景 - 干净的场景，只包含必要的游戏元素
         _ = new GameDataScene(Scene.JumpJumpScene)
         {
@@ -1224,6 +1237,16 @@ public partial class ScopeData : IGameClass
                 Scene.DefaultScene,
             ],
             DefaultScene = Scene.DefaultScene,
+        };
+        _ = new GameDataGameMode(GameMode.BlackHoleGame)
+        {
+            Name = "Black Hole Physics Game",
+            Gameplay = Gameplay.Default,
+            PlayerSettings = PlayerSettings.Default,
+            SceneList = [
+                Scene.BlackHoleScene,
+            ],
+            DefaultScene = Scene.BlackHoleScene,
         };
         _ = new GameDataGameMode(GameMode.UIFrameworkTest)
         {

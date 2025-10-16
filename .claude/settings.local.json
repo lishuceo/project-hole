@@ -2,7 +2,13 @@
   "permissions": {
     "allow": [
       "Bash(mkdir:*)",
-      "mcp__sce-tools__create"
+      "mcp__sce-tools__create",
+      "Bash(dir \"C:\\Dev\\AIProject\\project-hole\")",
+      "mcp__sce-tools__locate_sce_docs",
+      "mcp__sce-tools__compile",
+      "mcp__sce-tools__debug",
+      "mcp__sce-tools__pull_game_log",
+      "Read(//c/Users/jljia/.sce/pulled_log/clientlog/lua/**)"
     ],
     "deny": [],
     "ask": []
