@@ -1,0 +1,1791 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GameSystemUI</name>
+    </assembly>
+    <members>
+        <member name="P:GameSystemUI.AbilitySystemUI.Data.GameDataBindKeyConfig.DefaultKeyBindingOrder">
+            <summary>
+            默认按键绑定顺序，定义技能按钮的默认快捷键序列
+            例如：[VirtualKey.Q, VirtualKey.W, VirtualKey.E, VirtualKey.R] 
+            表示第一个技能绑定Q键，第二个技能绑定W键，以此类推
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Data.GameDataControlAbilityJoyStick.AbilityActiveFrame">
+            <summary>
+            激活状态技能框图片
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Data.GameDataControlAbilityJoyStick.AbilityBackgroundFrame">
+            <summary>
+            默认背景技能框图片
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Data.GameDataControlAbilityJoyStick.AbilityDisabledFrame">
+            <summary>
+            禁用状态技能框图片
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Data.GameDataControlAbilityJoyStick.CastingJoyStickDefaultBackground">
+            <summary>
+            施法摇杆的默认背景图片
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Data.GameDataControlAbilityJoyStick.CastingJoyStickDefaultBackgroundDisable">
+            <summary>
+            施法摇杆的禁用状态背景图片
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Data.GameDataControlAbilityJoyStick.CoolDownUIImage">
+            <summary>
+            冷却UI的进度条图片
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Data.GameDataControlAbilityJoyStick.CoolDownChargeUIBackgroundImage">
+            <summary>
+            充能冷却UI的背景图片
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Data.GameDataControlAbilityJoyStick.CoolDownChargeUIProgressImage">
+            <summary>
+            充能冷却UI的进度条图片
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Data.GameDataControlAbilityJoyStickGroup.MaxSkillCount">
+            <summary>
+            最大显示技能数量，超过此数量的技能将不会显示在摇杆组中
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Data.GameDataControlAbilityJoyStickGroup.AutoBindKey">
+            <summary>
+            是否自动绑定快捷键到摇杆按钮
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Data.GameDataControlAbilityJoyStickGroup.ButtonSize">
+            <summary>
+            普通技能摇杆按钮的大小（像素）
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Data.GameDataControlAbilityJoyStickGroup.AttackButtonSize">
+            <summary>
+            中心技能摇杆按钮的大小（像素），通常比普通技能按钮更大
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Data.GameDataControlAbilityJoyStickGroup.MinAroundDistance">
+            <summary>
+            环绕技能摇杆距离基准位置的最小距离（像素）
+            实际距离会根据技能数量动态调整：distance = MinAroundDistance + max(skillCount-4, 0) * ButtonSize/3.2
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Data.GameDataControlAbilityJoyStickGroup.TotalAngleDelta">
+            <summary>
+            环绕技能摇杆分布的总角度范围（度），技能将在此角度范围内均匀分布
+            例如：130度表示技能摇杆将分布在130度的扇形区域内
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Data.GameDataControlAbilityJoyStickGroup.InitAngle">
+            <summary>
+            环绕技能摇杆分布的初始角度（度），决定第一个环绕技能的位置
+            0度为右侧，90度为上方，-90度为下方，180度为左侧
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Data.GameDataControlAbilityJoyStickGroup.BaseX">
+            <summary>
+            环绕技能摇杆的基准位置X坐标（像素），环绕技能将围绕此点分布
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Data.GameDataControlAbilityJoyStickGroup.BaseY">
+            <summary>
+            环绕技能摇杆的基准位置Y坐标（像素），环绕技能将围绕此点分布
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Data.GameDataControlAbilityJoyStickGroup.AttackX">
+            <summary>
+            攻击技能摇杆的X坐标位置（像素），通常为主要攻击技能的固定位置
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Data.GameDataControlAbilityJoyStickGroup.AttackY">
+            <summary>
+            攻击技能摇杆的Y坐标位置（像素），通常为主要攻击技能的固定位置
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Data.GameDataControlAbilityJoyStickGroup.AutoLayoutManualChildren">
+            <summary>
+            手动添加的子控件是否参与自动布局
+            true: 手动添加的子控件会参与自动布局排版
+            false: 手动添加的子控件保持原有位置，不参与自动布局
+            </summary>
+        </member>
+        <member name="T:GameSystemUI.AbilitySystemUI.Primitive.AbilityJoyStick">
+            <summary>
+            技能摇杆控件，支持施法和建造模式，自动根据技能类型选择合适的摇杆
+            </summary>
+        </member>
+        <member name="F:GameSystemUI.AbilitySystemUI.Primitive.AbilityJoyStick.DefaultTemplate">
+            <summary>
+            默认模板链接
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.AbilityJoyStick.AbilityActiveFrame">
+            <summary>
+            激活状态技能框图片
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.AbilityJoyStick.AbilityBackgroundFrame">
+            <summary>
+            默认背景技能框图片
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.AbilityJoyStick.AbilityDisabledFrame">
+            <summary>
+            禁用状态技能框图片
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.AbilityJoyStick.AbilityExecute">
+            <summary>
+            绑定的技能执行器
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.AbilityJoyStick.IsPassiveAbility">
+            <summary>
+            是否为被动技能（基于是否有Effect判断）
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.AbilityJoyStick.IsEnabled">
+            <summary>
+            按钮是否可用
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.AbilityJoyStick.CastingJoyStickDefaultBackground">
+            <summary>
+            施法摇杆的默认背景图片
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.AbilityJoyStick.CastingJoyStickDefaultBackgroundDisable">
+            <summary>
+            施法摇杆的禁用状态背景图片
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.AbilityJoyStick.CoolDownUIImage">
+            <summary>
+            冷却UI的进度条图片
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.AbilityJoyStick.CoolDownChargeUIBackgroundImage">
+            <summary>
+            充能冷却UI的背景图片
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.AbilityJoyStick.CoolDownChargeUIProgressImage">
+            <summary>
+            充能冷却UI的进度条图片
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.AbilityJoyStick.BindKey">
+            <summary>
+            绑定的快捷键
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.AbilityJoyStick.CastingJoyStickSize">
+            <summary>
+            施法摇杆的大小（同时设置宽度和高度）
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.AbilityJoyStick.#ctor">
+            <summary>
+            使用默认模板创建技能摇杆实例
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.AbilityJoyStick.#ctor(GameData.IGameLink{GameSystemUI.AbilitySystemUI.Data.GameDataControlAbilityJoyStick})">
+            <summary>
+            使用指定模板创建技能摇杆实例
+            </summary>
+            <param name="link">技能摇杆控件模板链接</param>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.AbilityJoyStick.UpdateButtonState">
+            <summary>
+            更新按钮状态
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.AbilityJoyStick.SelectAppropriateJoyStick">
+            <summary>
+            根据技能类型选择合适的摇杆
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.AbilityJoyStick.IsBuildingAbility(GameCore.AbilitySystem.AbilityExecute)">
+            <summary>
+            判断是否为建造技能 - 通过类型判断而非名字
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.AbilityJoyStick.OnBindKeyPressed(System.Object,GameCore.Platform.SDL.VirtualKey)">
+            <summary>
+            处理绑定按键按下事件，触发施法模式
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.AbilityJoyStick.OnBindKeyReleased(System.Object,GameCore.Platform.SDL.VirtualKey)">
+            <summary>
+            处理绑定按键松开事件，触发释放逻辑
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.AbilityJoyStick.DisposeManaged">
+            <summary>
+            释放托管资源
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.AbilityJoyStickGroup.BindUnit">
+            <summary>
+            绑定的单位
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.AbilityJoyStickGroup.MaxSkillCount">
+            <summary>
+            最大显示技能数量
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.AbilityJoyStickGroup.AutoBindKey">
+            <summary>
+            是否自动绑定快捷键到摇杆按钮
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.AbilityJoyStickGroup.ButtonSize">
+            <summary>
+            普通技能摇杆按钮的大小（像素）
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.AbilityJoyStickGroup.AttackButtonSize">
+            <summary>
+            攻击技能摇杆按钮的大小（像素）
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.AbilityJoyStickGroup.MinAroundDistance">
+            <summary>
+            环绕技能摇杆距离基准位置的最小距离（像素）
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.AbilityJoyStickGroup.TotalAngleDelta">
+            <summary>
+            环绕技能摇杆分布的总角度范围（度）
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.AbilityJoyStickGroup.InitAngle">
+            <summary>
+            环绕技能摇杆分布的初始角度（度）
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.AbilityJoyStickGroup.BaseX">
+            <summary>
+            环绕技能摇杆的基准位置X坐标（像素）
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.AbilityJoyStickGroup.BaseY">
+            <summary>
+            环绕技能摇杆的基准位置Y坐标（像素）
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.AbilityJoyStickGroup.AttackX">
+            <summary>
+            攻击技能摇杆的X坐标位置（像素）
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.AbilityJoyStickGroup.AttackY">
+            <summary>
+            攻击技能摇杆的Y坐标位置（像素）
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.AbilityJoyStickGroup.AutoLayoutManualChildren">
+            <summary>
+            非自动生成的子控件是否参与自动布局
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.AbilityJoyStickGroup.RefreshabilityJoySticks">
+            <summary>
+            刷新摇杆组，并将绑定单位的技能同步到摇杆上
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.AbilityJoyStickGroup.ApplyLayout(System.Int32,System.Int32)">
+            <summary>
+            应用布局到指定范围的摇杆
+            </summary>
+            <param name="startIndex">开始索引（包含）</param>
+            <param name="endIndex">结束索引（不包含）</param>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.AbilityJoyStickGroup.SetJoyStickLayout(GameSystemUI.AbilitySystemUI.Primitive.AbilityJoyStick,System.Single,System.Single,System.Single)">
+            <summary>
+            设置摇杆的位置和大小
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.AbilityJoyStickGroup.FindAbilityJoySticks">
+            <summary>
+            返回非生成子控件中类型为AbilityJoyStick的控件
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.AbilityJoyStickGroup.UpdateChildrenAbilityJoySticks">
+            <summary>
+            更新内部的摇杆列表
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.AbilityJoyStickGroup.ApplyAutoKeyBinding(System.Int32)">
+            <summary>
+            应用自动按键绑定
+            </summary>
+            <param name="skillCount">要绑定的技能数量</param>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.AbilityJoyStickGroup.SubscribeAbilityEvents">
+            <summary>
+            订阅技能事件监听
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.AbilityJoyStickGroup.UnsubscribeAbilityEvents">
+            <summary>
+            取消订阅技能事件监听
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.AbilityJoyStickGroup.OnAbilityAttached(GameCore.AbilitySystem.Ability)">
+            <summary>
+            技能添加时的回调
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.AbilityJoyStickGroup.OnAbilityRemoved">
+            <summary>
+            技能移除时的回调
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.AbilityJoyStickGroup.DisposeManaged">
+            <summary>
+            释放托管资源
+            </summary>
+        </member>
+        <member name="T:GameSystemUI.AbilitySystemUI.Primitive.BindKeyUI">
+            <summary>
+            按键绑定UI控件，继承自Panel，包含背景图片和标签
+            </summary>
+        </member>
+        <member name="F:GameSystemUI.AbilitySystemUI.Primitive.BindKeyUI.KeyPressTrigger">
+            <summary>
+            静态按键按下触发器
+            </summary>
+        </member>
+        <member name="F:GameSystemUI.AbilitySystemUI.Primitive.BindKeyUI.KeyReleaseTrigger">
+            <summary>
+            静态按键松开触发器
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.BindKeyUI.#cctor">
+            <summary>
+            静态构造函数，创建并注册全局按键触发器
+            </summary>
+        </member>
+        <member name="F:GameSystemUI.AbilitySystemUI.Primitive.BindKeyUI.KeyBindings">
+            <summary>
+            所有的按键绑定实例集合
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.BindKeyUI.BackgroundImage">
+            <summary>
+            背景图片属性
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.BindKeyUI.Label">
+            <summary>
+            标签子控件
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.BindKeyUI.Text">
+            <summary>
+            标签文本（快捷访问Label.Text）
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.BindKeyUI.BindKey">
+            <summary>
+            绑定的按键（设置为null解除绑定）
+            </summary>
+        </member>
+        <member name="E:GameSystemUI.AbilitySystemUI.Primitive.BindKeyUI.KeyPressed">
+            <summary>
+            按键被按下时的事件
+            </summary>
+        </member>
+        <member name="E:GameSystemUI.AbilitySystemUI.Primitive.BindKeyUI.KeyReleased">
+            <summary>
+            按键被松开时的事件
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.BindKeyUI.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.BindKeyUI.GetDisplayText(GameCore.Platform.SDL.VirtualKey)">
+            <summary>
+            获取按键的显示文本（对数字键进行特殊处理）
+            </summary>
+            <param name="key">虚拟按键</param>
+            <returns>显示文本</returns>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.BindKeyUI.OnKeyPressed(System.Object,GameUI.TriggerEvent.EventGameKeyDown)">
+            <summary>
+            静态按键按下事件处理器
+            </summary>
+            <param name="sender">事件发送者</param>
+            <param name="eventArgs">按键事件参数</param>
+            <returns>事件处理结果</returns>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.BindKeyUI.OnKeyReleased(System.Object,GameUI.TriggerEvent.EventGameKeyUp)">
+            <summary>
+            处理全局按键松开事件
+            </summary>
+            <param name="sender">事件发送者</param>
+            <param name="eventArgs">按键事件参数</param>
+            <returns>事件处理结果</returns>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.BindKeyUI.DisposeManaged">
+            <summary>
+            释放托管资源
+            </summary>
+        </member>
+        <member name="T:GameSystemUI.AbilitySystemUI.Primitive.BuildingJoyStick">
+            <summary>
+            建造技能摇杆 - 专门用于建造类技能的摇杆控件
+            支持建造预览、网格对齐、碰撞检测等功能
+            </summary>
+        </member>
+        <member name="E:GameSystemUI.AbilitySystemUI.Primitive.BuildingJoyStick.OnBuildingCompleted">
+            <summary>
+            建筑物建造完成事件 - 用于更新碰撞信息
+            </summary>
+        </member>
+        <member name="E:GameSystemUI.AbilitySystemUI.Primitive.BuildingJoyStick.OnStopBuilding">
+            <summary>
+            停止建造阶段事件 - 进入禁用状态时触发
+            </summary>
+        </member>
+        <member name="E:GameSystemUI.AbilitySystemUI.Primitive.BuildingJoyStick.OnStopBuildingEnd">
+            <summary>
+            停止建造结束阶段事件 - 恢复正常状态时触发
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.BuildingJoyStick.DefaultBackground">
+            <summary>
+            默认背景图片
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.BuildingJoyStick.DefaultBackgroundDisable">
+            <summary>
+            禁用状态背景图片
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.BuildingJoyStick.AbilityExecute">
+            <summary>
+            绑定的技能执行器
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.BuildingJoyStick.host">
+            <summary>
+            技能宿主单位
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.BuildingJoyStick.SetPressed(GameCore.Platform.SDL.PointerButtons)">
+            <summary>
+            设置按下状态
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.BuildingJoyStick.SetKeyboardPressed">
+            <summary>
+            设置键盘激活状态
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.BuildingJoyStick.SetReleased">
+            <summary>
+            设置释放状态
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.BuildingJoyStick.IsBuildingAbility">
+            <summary>
+            判断当前技能是否为建造技能 - 通过类型判断而非名字
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.BuildingJoyStick.GetBuildingUnitFromAbility(System.Object)">
+            <summary>
+            通过反射从建造技能获取建造单位信息
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.BuildingJoyStick.GetBuildingUnitFootprint">
+            <summary>
+            获取当前建造技能对应的单位Footprint配置
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.BuildingJoyStick.CreateFootprint(System.Int32,System.Int32)">
+            <summary>
+            创建指定大小的Footprint（所有格子都占用）
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.BuildingJoyStick.CreateDefaultFootprint">
+            <summary>
+            创建默认的3x3 Footprint
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.BuildingJoyStick.CreateBuildingPreview">
+            <summary>
+            创建建造预览Actor
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.BuildingJoyStick.UpdateBuildingPosition">
+            <summary>
+            更新建造位置并同时更新预览Actor位置
+            建造技能始终使用鼠标当前位置，而不是相对于单位的偏移
+            🎯 优化：只在预览模型移动到新格子时才进行所有更新操作
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.BuildingJoyStick.CalculateMouseWorldPosition(GameCore.SceneSystem.ScenePoint)">
+            <summary>
+            计算鼠标当前位置的世界坐标
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.BuildingJoyStick.SnapToGrid(GameCore.SceneSystem.ScenePoint)">
+            <summary>
+            将坐标对齐到网格中心点（暂时屏蔽，预览模型紧跟鼠标）
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.BuildingJoyStick.UpdateBuildingPreview">
+            <summary>
+            更新建造预览位置
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.BuildingJoyStick.UpdateBuildingPreviewPosition">
+            <summary>
+            🎯 更新预览Actor位置到新格子位置（仅在格子变化时调用）
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.BuildingJoyStick.PerformGridValidationAndUpdate">
+            <summary>
+            🔍 执行碰撞检测和网格更新（仅在格子位置变化时调用）
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.BuildingJoyStick.IsValidBuildingPosition(GameCore.SceneSystem.ScenePoint)">
+            <summary>
+            检查建造位置是否有效（整体位置检查）
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.BuildingJoyStick.CheckBuildingCollision(GameCore.SceneSystem.ScenePoint)">
+            <summary>
+            检查建筑物碰撞 - 确保要建造的所有格子都没有被现有建筑占用
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.BuildingJoyStick.IsValidSingleBuildingCell(GameCore.SceneSystem.ScenePoint,System.Single)">
+            <summary>
+            检查单个格子是否适合建造 - 单格子碰撞检测入口
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.BuildingJoyStick.CheckBuildingConflicts(GameCore.SceneSystem.ScenePoint,System.Single)">
+            <summary>
+            检查与现有建筑物的冲突 - 专注于建筑物碰撞检测，先搜索单位确保建筑存在，再使用缓存优化性能
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.BuildingJoyStick.CheckBuildingFootprintConflictWithCache(GameCore.EntitySystem.Unit,GameCore.SceneSystem.ScenePoint,System.Single)">
+            <summary>
+            检查建筑物footprint是否与指定格子冲突 - 直接使用缓存数据，提高性能
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.BuildingJoyStick.CheckBuildingFootprintConflict(GameCore.EntitySystem.Unit,GameCore.SceneSystem.ScenePoint,System.Single)">
+            <summary>
+            检查建筑物footprint是否与指定格子冲突 - 精确的格子级别碰撞检测，严格验证建筑存在性（保留原方法以备用）
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.BuildingJoyStick.GetUnitFootprint(GameCore.EntitySystem.Unit)">
+            <summary>
+            获取其他单位的footprint信息 - 严格验证单位是否真的存在且有有效footprint
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.BuildingJoyStick.ParseFootprintString(System.String)">
+            <summary>
+            解析footprint字符串（参考Lua的footpoint_to_map函数）
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.BuildingJoyStick.GetUnitCollisionRadius(GameCore.EntitySystem.Unit)">
+            <summary>
+            获取单位的碰撞半径
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.BuildingJoyStick.UpdateBuildingPreviewVisuals(System.Boolean)">
+            <summary>
+            更新建造预览的视觉效果
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.BuildingJoyStick.CreateBuildingGrid">
+            <summary>
+            创建建造网格Actor
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.BuildingJoyStick.InitializeGridStates">
+            <summary>
+            初始化网格状态 - 根据Footprint动态设置网格格子状态
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.BuildingJoyStick.UpdateBuildingGridVisuals(System.Boolean)">
+            <summary>
+            更新建造网格视觉效果 - 网格通过bounds偏移定位，每个格子独立检测
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.BuildingJoyStick.UpdateCenterGridCellState(System.Boolean)">
+            <summary>
+            更新网格中被占用格子的状态 - 每个格子独立检查碰撞
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.BuildingJoyStick.CheckSingleCellValidity(GameCore.SceneSystem.ScenePoint,System.Single)">
+            <summary>
+            检查单个格子的完整有效性（使用GetStaticCollisionMask替代原地形判断）
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.BuildingJoyStick.CheckStaticCollisionMask(GameCore.SceneSystem.ScenePoint)">
+            <summary>
+            使用 ScenePoint.GetStaticCollisionMask 检查静态碰撞（替代原地形判断）
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.BuildingJoyStick.UpdateBuildingGridPosition">
+            <summary>
+            更新建造网格位置 - 参考Lua实现，包含网格对齐和中心点计算
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.BuildingJoyStick.AreAllBuildingCellsValid">
+            <summary>
+            检查所有建造格子是否都有效（只有全绿色才能建造）
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.BuildingJoyStick.UpdateBuildingCollisionInfo(GameCore.EntitySystem.Unit,GameCore.SceneSystem.ScenePoint,GameCore.CollisionSystem.Data.Struct.Footprint,System.Boolean)">
+            <summary>
+            更新建筑物碰撞信息 - 参考Lua的__update_collision_info函数
+            </summary>
+            <param name="unit">建造的单位</param>
+            <param name="position">建造位置</param>
+            <param name="footprint">建筑物足印</param>
+            <param name="isRemove">是否移除（false=建造，true=拆除）</param>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.BuildingJoyStick.CheckCachedCollisionInfo(GameCore.SceneSystem.Scene,GameCore.SceneSystem.ScenePoint,System.Single)">
+            <summary>
+            检查碰撞信息缓存 - 参考Lua的check_collision_info函数
+            </summary>
+            <param name="scene">场景</param>
+            <param name="cellPosition">格子位置</param>
+            <param name="gridSize">网格大小</param>
+            <returns>是否有碰撞</returns>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.BuildingJoyStick.ClearSceneCollisionInfo(GameCore.SceneSystem.Scene)">
+            <summary>
+            清理场景的碰撞信息缓存
+            </summary>
+            <param name="scene">要清理的场景</param>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.BuildingJoyStick.GetAlignedBuildingPosition">
+            <summary>
+            获取对齐后的建造位置 - 使用预览模型的实际位置而不是鼠标原始位置
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.BuildingJoyStick.CancelBuilding">
+            <summary>
+            取消建造或清理建造预览
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.StopCastingButton.IsActive">
+            <summary>
+            是否激活状态
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.StopCastingButton.ButtonImage">
+            <summary>
+            停止施法按钮图片
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.StopCastingButton.MaskImage">
+            <summary>
+            停止施法遮罩图片
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.StopCastingButton.BindCastingJoyStick">
+            <summary>
+            绑定的施法摇杆
+            </summary>
+        </member>
+        <member name="T:GameSystemUI.AbilitySystemUI.Primitive.CastingJoyStick">
+            <summary>
+            施法摇杆，支持键盘和鼠标两种激活模式
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.CastingJoyStick.IsKeyboardActivated">
+            <summary>
+            标记当前是否是键盘激活状态
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.CastingJoyStick.ShouldShowJoyStickUI">
+            <summary>
+            是否显示摇杆UI（基于技能的AlwaysAcquireTarget属性）
+            </summary>
+        </member>
+        <member name="E:GameSystemUI.AbilitySystemUI.Primitive.CastingJoyStick.OnStopCasting">
+            <summary>
+            停止施法阶段事件 - 进入禁用状态时触发
+            </summary>
+        </member>
+        <member name="E:GameSystemUI.AbilitySystemUI.Primitive.CastingJoyStick.OnStopCastingEnd">
+            <summary>
+            停止施法结束阶段事件 - 恢复正常状态时触发
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.CastingJoyStick.DefaultBackground">
+            <summary>
+            默认背景图片
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.CastingJoyStick.DefaultBackgroundDisable">
+            <summary>
+            禁用状态背景图片
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.CastingJoyStick.AbilityExecute">
+            <summary>
+            绑定的技能执行器
+            只有满足以下条件的技能才显示摇杆UI：
+            1. ability 是 AbilityExecute 类型
+            2. abilityExecute.AlwaysAcquireTarget == true
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.CastingJoyStick.host">
+            <summary>
+            技能宿主单位
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.CastingJoyStick.#ctor">
+            <summary>
+            初始化CastingJoyStick实例
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.CastingJoyStick.SetPressed(GameCore.Platform.SDL.PointerButtons)">
+            <summary>
+            设置按下状态
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.CastingJoyStick.SetKeyboardPressed">
+            <summary>
+            设置键盘激活状态
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.CastingJoyStick.SetReleased">
+            <summary>
+            设置释放状态
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.CastingJoyStick.TakeIndicatorControl">
+            <summary>
+            夺取指示器控制权
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.CastingJoyStick.ReleaseIndicatorControl">
+            <summary>
+            释放指示器控制权
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.CastingJoyStick.Think(System.Int32)">
+            <summary>
+            IThinker接口实现，仅在键盘模式下才调用UpdateTargetingIndicator，摇杆模式通过OnMove事件更新
+            </summary>
+            <param name="delta">时间间隔（毫秒）</param>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.CastingJoyStick.CalculateKeyboardTargetPosition(GameCore.SceneSystem.ScenePoint)">
+            <summary>
+            计算键盘激活模式下的目标位置（基于Lua逻辑）
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.CastingJoyStick.GetCameraAngleOffset">
+            <summary>
+            获取镜头角度偏移量（基于当前活跃镜头的旋转角度）
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.CastingJoyStick.DisposeManaged">
+            <summary>
+            释放托管资源
+            </summary>
+        </member>
+        <member name="T:GameSystemUI.AbilitySystemUI.Primitive.CoolDownChargeUI">
+            <summary>
+            充能技能冷却显示UI组件
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.CoolDownChargeUI.BindSkill">
+            <summary>
+            绑定的技能
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.CoolDownChargeUI.StackCount">
+            <summary>
+            层数计数
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.CoolDownChargeUI.ChargeProgress">
+            <summary>
+            充能进度 (0-1)
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.CoolDownChargeUI.BackgroundImage">
+            <summary>
+            背景图片
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.CoolDownChargeUI.ChargeProgressImage">
+            <summary>
+            充能进度条图片
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.CoolDownChargeUI.IsChargeSkill">
+            <summary>
+            是否为充能技能
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.CoolDownChargeUI.HasStackSystem">
+            <summary>
+            是否有层数系统
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.CoolDownChargeUI.CurrentChargeCd">
+            <summary>
+            当前充能冷却时间
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.CoolDownChargeUI.ChargeCdMax">
+            <summary>
+            最大充能冷却时间
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.CoolDownChargeUI.CurrentStackCount">
+            <summary>
+            当前层数
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.CoolDownChargeUI.#ctor">
+            <summary>
+            初始化CoolDownChargeUI实例
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.CoolDownChargeUI.Update">
+            <summary>
+            更新显示
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.CoolDownChargeUI.Think(System.Int32)">
+            <summary>
+            IThinker接口实现，定期更新充能状态
+            </summary>
+            <param name="delta">时间间隔（毫秒）</param>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.CoolDownChargeUI.HasActiveCharging">
+            <summary>
+            判断是否有正在进行的充能需要持续更新
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.CoolDownChargeUI.OnSkillCooldownChanged">
+            <summary>
+            技能冷却状态变化事件处理
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.CoolDownChargeUI.UpdateChargeDisplay">
+            <summary>
+            更新充能显示
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.CoolDownChargeUI.UpdateStackDisplay">
+            <summary>
+            更新层数显示
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.CoolDownChargeUI.ResetDisplay">
+            <summary>
+            重置显示状态
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.CoolDownChargeUI.DisposeManaged">
+            <summary>
+            释放托管资源
+            </summary>
+        </member>
+        <member name="T:GameSystemUI.AbilitySystemUI.Primitive.CoolDownUI">
+            <summary>
+            技能冷却显示UI组件
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.CoolDownUI.BindSkill">
+            <summary>
+            绑定的技能
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.CoolDownUI.CoolProgress">
+            <summary>
+            冷却进度 (0-1)
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.CoolDownUI.CoolImage">
+            <summary>
+            冷却进度条图片
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.CoolDownUI.CoolText">
+            <summary>
+            冷却时间文本
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.CoolDownUI.CurrentCd">
+            <summary>
+            当前冷却时间
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.CoolDownUI.CdMax">
+            <summary>
+            最大冷却时间
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.CoolDownUI.Create">
+            <summary>
+            创建并初始化CoolDownUI实例
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.CoolDownUI.Create(GameCore.AbilitySystem.AbilityActive)">
+            <summary>
+            创建并初始化CoolDownUI实例，同时设置技能
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.CoolDownUI.Think(System.Int32)">
+            <summary>
+            IThinker接口实现，定期更新冷却状态
+            </summary>
+            <param name="delta">时间间隔（毫秒）</param>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.CoolDownUI.Update">
+            <summary>
+            更新冷却显示，顺便开关IThinker
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.CoolDownUI.DisposeManaged">
+            <summary>
+            释放托管资源
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.Joystick.BindUnit">
+            <summary>
+            绑定的单位（可选，用于移动摇杆等场景）
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.Joystick.HasActivePointer">
+            <summary>
+            当前是否有活动的指针捕获
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.Joystick.CurrentPointer">
+            <summary>
+            当前捕获的指针类型
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.Joystick.IsActivated">
+            <summary>
+            检查摇杆是否处于激活状态
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.Joystick.ShouldShowUI">
+            <summary>
+            子类可重写此方法来控制是否显示UI
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.Joystick.UpdateUIVisibility">
+            <summary>
+            更新UI控件的可见性
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.Joystick.IsChildMode">
+            <summary>
+            子控件模式：为true时取消内部事件订阅，避免与父控件事件冲突
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.Joystick.SubscribeToPointerEvents">
+            <summary>
+            订阅按下抬起事件
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.Joystick.UnsubscribeFromPointerEvents">
+            <summary>
+            取消订阅按下抬起事件
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.Joystick.SetChildMode(System.Boolean)">
+            <summary>
+            设置子控件模式并管理事件订阅
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.Joystick.ForceReset">
+            <summary>
+            强制释放所有指针捕获并重置状态
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.Joystick.Activate(GameCore.Platform.SDL.PointerButtons)">
+            <summary>
+            激活摇杆并捕获指定指针
+            </summary>
+            <param name="pointerIndex">要捕获的指针按钮类型</param>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.Joystick.Deactivate">
+            <summary>
+            停用摇杆并释放所有指针捕获
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.Joystick.SetPressedState(GameCore.Platform.SDL.PointerButtons)">
+            <summary>
+            设置按下状态并捕获指针
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.Joystick.SetReleasedState">
+            <summary>
+            设置释放状态并释放指针捕获
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.MoveJoystick.IsActive">
+            <summary>
+            摇杆是否当前处于活动状态（可见且有指针捕获）
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.AbilitySystemUI.Primitive.MoveJoystick.IsVisible">
+            <summary>
+            摇杆是否当前可见
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.AbilitySystemUI.Primitive.MoveJoystick.GetCameraAngleOffset">
+            <summary>
+            获取镜头角度偏移量（基于当前活跃镜头的旋转角度）
+            </summary>
+        </member>
+        <member name="T:GameSystemUI.BuffSystemUI.Cache">
+            <summary>
+            BuffSystem的配置缓存类 - 提供默认配置值
+            如果ScopeData中的配置不可用，则使用硬编码的默认值
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.BuffSystemUI.Cache.GetConfigValue``1(System.Func{``0},``0)">
+            <summary>
+            安全地获取配置值，如果ScopeData访问失败则返回默认值
+            </summary>
+        </member>
+        <member name="T:GameSystemUI.BuffSystemUI.BuffSystemUsageExample">
+            <summary>
+            Buff系统UI使用示例
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.BuffSystemUI.BuffSystemUsageExample.CreateBuffIconExample">
+            <summary>
+            创建和使用BuffIcon的示例
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.BuffSystemUI.BuffSystemUsageExample.CreateBuffBarExample">
+            <summary>
+            创建和使用BuffBar的示例
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.BuffSystemUI.BuffSystemUsageExample.CustomBuffBarConfigExample">
+            <summary>
+            自定义BuffBar配置的示例
+            </summary>
+        </member>
+        <member name="T:GameSystemUI.BuffSystemUI.IBuffExample">
+            <summary>
+            Buff系统接口示例
+            实际使用时需要根据游戏的具体Buff系统来实现这些接口
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.BuffSystemUI.IBuffExample.Name">
+            <summary>
+            Buff名称
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.BuffSystemUI.IBuffExample.Icon">
+            <summary>
+            Buff图标路径
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.BuffSystemUI.IBuffExample.Polarity">
+            <summary>
+            Buff极性
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.BuffSystemUI.IBuffExample.CurrentCd">
+            <summary>
+            当前剩余时间
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.BuffSystemUI.IBuffExample.MaxCd">
+            <summary>
+            最大持续时间
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.BuffSystemUI.IBuffExample.Stack">
+            <summary>
+            堆叠层数
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.BuffSystemUI.IBuffExample.DisplayConfig">
+            <summary>
+            显示配置
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.BuffSystemUI.IBuffExample.Owner">
+            <summary>
+            所属单位
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.BuffSystemUI.IBuffExample.HasCategory(System.String)">
+            <summary>
+            检查是否有指定分类
+            </summary>
+        </member>
+        <member name="T:GameSystemUI.BuffSystemUI.IUnitExample">
+            <summary>
+            单位系统接口示例
+            实际使用时需要根据游戏的具体单位系统来实现这些接口
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.BuffSystemUI.IUnitExample.GetBuffs">
+            <summary>
+            获取单位身上的所有Buff
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.BuffSystemUI.IUnitExample.FindBuff(System.String)">
+            <summary>
+            根据名称查找Buff
+            </summary>
+        </member>
+        <member name="T:GameSystemUI.BuffSystemUI.Data.BuffDisplayConfig">
+            <summary>
+            Buff显示配置
+            对应Lua中的BuffShow字段
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.BuffSystemUI.Data.BuffDisplayConfig.IsShow">
+            <summary>
+            是否显示
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.BuffSystemUI.Data.BuffDisplayConfig.IsShowDuration">
+            <summary>
+            是否显示持续时间（若显示则以cd的方式显示）
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.BuffSystemUI.Data.BuffDisplayConfig.IsShowStack">
+            <summary>
+            是否显示叠加层数
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.BuffSystemUI.Data.BuffDisplayConfig.IsBlink">
+            <summary>
+            是否在即将消失时闪烁（即将消失指持续时间变为2秒以下时，本身若总时间小于2秒则永远不会闪烁）
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.BuffSystemUI.Data.BuffDisplayConfig.IsMergeInstance">
+            <summary>
+            是否多个实例合并显示（合并的话CD显示最长持续时间，并且把叠加层数加起来）
+            </summary>
+        </member>
+        <member name="T:GameSystemUI.BuffSystemUI.Data.GameDataControlBuffBar">
+            <summary>
+            BuffBar控件数据配置
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.BuffSystemUI.Data.GameDataControlBuffBar.BuffWidth">
+            <summary>
+            Buff宽度
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.BuffSystemUI.Data.GameDataControlBuffBar.BuffHeight">
+            <summary>
+            Buff高度
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.BuffSystemUI.Data.GameDataControlBuffBar.BuffMargin">
+            <summary>
+            Buff间隔
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.BuffSystemUI.Data.GameDataControlBuffBar.BuffCatFilter">
+            <summary>
+            Buff分类过滤：符合该字段的Buff分类才会显示在这个控件中，为空全部显示
+            多个分类用分号分隔，如："可被禁用;负面效果"
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.BuffSystemUI.Data.GameDataControlBuffBar.BuffPolarity">
+            <summary>
+            Buff极性过滤：三个选项：正面/负面/无（勾上的极性才会在这显示，默认全勾上）
+            多个极性用分号分隔，如："正面;负面;无"
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.BuffSystemUI.Data.GameDataControlBuffBar.BuffIconTemplate">
+            <summary>
+            Buff图标模版：填写一个page，作为它填充子成员时的模版
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.BuffSystemUI.Data.GameDataControlBuffBar.DefaultPosCnt">
+            <summary>
+            预览用正面极性Buff个数：默认3
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.BuffSystemUI.Data.GameDataControlBuffBar.DefaultNegCnt">
+            <summary>
+            预览用负面极性Buff个数：默认3
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.BuffSystemUI.Data.GameDataControlBuffBar.DefaultNoneCnt">
+            <summary>
+            预览用无极性Buff个数：默认3
+            </summary>
+        </member>
+        <member name="T:GameSystemUI.BuffSystemUI.Data.GameDataControlBuffIcon">
+            <summary>
+            BuffIcon控件数据配置
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.BuffSystemUI.Data.GameDataControlBuffIcon.BuffIcon">
+            <summary>
+            Buff图标路径
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.BuffSystemUI.Data.GameDataControlBuffIcon.BuffBgPosColor">
+            <summary>
+            正面极性外框颜色
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.BuffSystemUI.Data.GameDataControlBuffIcon.BuffBgNegColor">
+            <summary>
+            负面极性外框颜色
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.BuffSystemUI.Data.GameDataControlBuffIcon.BuffBgNoneColor">
+            <summary>
+            无极性外框颜色
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.BuffSystemUI.Data.GameDataControlBuffIcon.BuffWidth">
+            <summary>
+            Buff宽度
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.BuffSystemUI.Data.GameDataControlBuffIcon.BuffHeight">
+            <summary>
+            Buff高度
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.BuffSystemUI.Data.GameDataControlBuffIcon.BuffMargin">
+            <summary>
+            Buff间隔
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.BuffSystemUI.Data.GameDataControlBuffIcon.FontSize">
+            <summary>
+            字体大小
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.BuffSystemUI.Data.GameDataControlBuffIcon.BuffPosProgressType">
+            <summary>
+            正面极性CD序列帧类型
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.BuffSystemUI.Data.GameDataControlBuffIcon.BuffNegProgressType">
+            <summary>
+            负面极性CD序列帧类型
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.BuffSystemUI.Data.GameDataControlBuffIcon.BuffNoneProgressType">
+            <summary>
+            无极性CD序列帧类型
+            </summary>
+        </member>
+        <member name="T:GameSystemUI.BuffSystemUI.Primitive.BuffBar">
+            <summary>
+            Buff条UI控件
+            显示单位身上的Buff列表，支持过滤、排序等功能
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.BuffSystemUI.Primitive.BuffBar.BuffUpdateFrameInterval">
+            <summary>
+            Buff更新帧间隔
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.BuffSystemUI.Primitive.BuffBar.BindUnit">
+            <summary>
+            绑定的单位 - 参考AbilityJoyStickGroup的绑定方式
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.BuffSystemUI.Primitive.BuffBar.Unit">
+            <summary>
+            兼容性属性：绑定的单位（通用对象类型）
+            这个属性名保持和测试代码中使用的一致
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.BuffSystemUI.Primitive.BuffBar.Create">
+            <summary>
+            创建BuffBar实例
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.BuffSystemUI.Primitive.BuffBar.Create(System.Object)">
+            <summary>
+            创建BuffBar实例并绑定单位
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.BuffSystemUI.Primitive.BuffBar.SetUnit(System.Object)">
+            <summary>
+            设置绑定的单位
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.BuffSystemUI.Primitive.BuffBar.StartBuffUpdate">
+            <summary>
+            启动Buff更新 - 简化版本，不使用异步任务
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.BuffSystemUI.Primitive.BuffBar.UpdateBuffList">
+            <summary>
+            更新Buff列表 - 使用真实的BuffManager获取buff
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.BuffSystemUI.Primitive.BuffBar.UpdateLayout">
+            <summary>
+            更新布局显示 - 简化版本，利用BuffIcon的自主管理功能
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.BuffSystemUI.Primitive.BuffBar.UpdateLayoutForPreview">
+            <summary>
+            预览模式下的布局更新
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.BuffSystemUI.Primitive.BuffBar.IsInDesignMode">
+            <summary>
+            判断是否在设计模式
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.BuffSystemUI.Primitive.BuffBar.GetLocalPlayerHero">
+            <summary>
+            获取本地玩家的主控单位 - 模仿摇杆的获取方式
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.BuffSystemUI.Primitive.BuffBar.ShouldShowBuff(System.Object)">
+            <summary>
+            判断Buff是否应该显示
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.BuffSystemUI.Primitive.BuffBar.GetBuffPolarityString(GameCore.BuffSystem.Data.Enum.BuffPolarity)">
+            <summary>
+            将极性枚举转换为字符串
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.BuffSystemUI.Primitive.BuffBar.SubscribeBuffEvents">
+            <summary>
+            订阅Buff事件监听 - 参考AbilityJoyStickGroup
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.BuffSystemUI.Primitive.BuffBar.UnsubscribeBuffEvents">
+            <summary>
+            取消订阅Buff事件监听
+            </summary>
+        </member>
+        <member name="T:GameSystemUI.BuffSystemUI.Primitive.BuffDisplayData">
+            <summary>
+            Buff显示数据结构 - 整合所有Buff显示所需的信息
+            </summary>
+        </member>
+        <member name="T:GameSystemUI.BuffSystemUI.Primitive.BuffIcon">
+            <summary>
+            Buff图标UI控件
+            显示具体的Buff图标，包含图标、CD进度、堆叠数量等
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.BuffSystemUI.Primitive.BuffIcon.Buff">
+            <summary>
+            绑定的Buff对象
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.BuffSystemUI.Primitive.BuffIcon.CreateBuffDisplayData(System.Object)">
+            <summary>
+            创建BuffData - 从Buff对象中提取所有显示信息
+            这个方法整合了原来BuffBar.CreateBuffData的逻辑
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.BuffSystemUI.Primitive.BuffIcon.Polarity">
+            <summary>
+            Buff极性
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.BuffSystemUI.Primitive.BuffIcon.CdProgress">
+            <summary>
+            CD进度 (0-1)
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.BuffSystemUI.Primitive.BuffIcon.CdText">
+            <summary>
+            CD时间文本
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.BuffSystemUI.Primitive.BuffIcon.StackText">
+            <summary>
+            堆叠数量文本
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.BuffSystemUI.Primitive.BuffIcon.Create">
+            <summary>
+            创建BuffIcon实例
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.BuffSystemUI.Primitive.BuffIcon.Create(System.Object)">
+            <summary>
+            创建BuffIcon实例并绑定Buff
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.BuffSystemUI.Primitive.BuffIcon.SetPolarity(GameCore.BuffSystem.Data.Enum.BuffPolarity)">
+            <summary>
+            设置Buff极性
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.BuffSystemUI.Primitive.BuffIcon.SetIcon(System.String)">
+            <summary>
+            设置Buff图标
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.BuffSystemUI.Primitive.BuffIcon.SetCd(System.Single,System.Single)">
+            <summary>
+            设置CD进度
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.BuffSystemUI.Primitive.BuffIcon.SetStack(System.Int32)">
+            <summary>
+            设置堆叠数量
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.BuffSystemUI.Primitive.BuffIcon.SetBlink">
+            <summary>
+            设置闪烁效果
+            </summary>
+        </member>
+        <member name="T:GameSystemUI.ChatSystem.ChatSystem">
+            <summary>
+            ChatSystem 初始化类，负责注册聊天系统
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.ChatSystem.ChatMessageClient.RegisterClientMessageHandlers">
+            <summary>
+            注册客户端消息处理器
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.ChatSystem.ChatWindow.InitializeWindow">
+            <summary>
+            初始化窗口基础属性（大小、位置、背景等）
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.ChatSystem.ChatWindow.InitializeBasicUI">
+            <summary>
+            初始化基础UI组件（标题、关闭按钮）
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.ChatSystem.ChatWindow.InitializeContentArea">
+            <summary>
+            初始化主内容区域（聊天记录、玩家列表）
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.ChatSystem.ChatWindow.InitializeTabs">
+            <summary>
+            初始化页签容器和页签按钮
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.ChatSystem.ChatWindow.CreateTabButtons">
+            <summary>
+            创建聊天记录和玩家列表页签按钮
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.ChatSystem.ChatWindow.InitializeInputArea">
+            <summary>
+            初始化输入区域（输入面板、发送按钮）
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.ChatSystem.ChatWindow.InitializeBlockUI">
+            <summary>
+            初始化屏蔽功能UI（屏蔽所有玩家选项）
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.ChatSystem.ChatWindow.SetupEvents">
+            <summary>
+            设置所有UI组件的事件处理器
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.ChatSystem.ChatWindow.TryParsePrivateMessage(System.String,System.Int32@,System.String@)">
+            <summary>
+            解析私聊消息格式：/Player{x}....
+            </summary>
+            <param name="input">输入的消息文本</param>
+            <param name="targetPlayerId">目标玩家ID</param>
+            <param name="messageContent">消息内容</param>
+            <returns>是否成功解析为私聊格式</returns>
+        </member>
+        <member name="P:GameSystemUI.ChatSystem.ChatWindow.BlockAllEnabled">
+            <summary>
+            从输入面板获取当前频道类型
+            </summary>
+        </member>
+        <member name="T:GameSystemUI.GameInventoryUI.Data.GameDataControlDefaultInventoryUI">
+            <summary>
+            默认背包UI控件数据配置
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.GameInventoryUI.Data.GameDataControlDefaultInventoryUI.FilterCategories">
+            <summary>
+            物品分类过滤器，只显示指定分类的物品
+            </summary>
+        </member>
+        <member name="T:GameSystemUI.GameInventoryUI.Data.GameDataControlListOption">
+            <summary>
+            列表选项控件数据配置
+            </summary>
+        </member>
+        <member name="T:GameSystemUI.GameInventoryUI.Data.GameDataControlPageButton">
+            <summary>
+            页面按钮控件数据配置
+            </summary>
+        </member>
+        <member name="T:GameSystemUI.GameInventoryUI.Data.GameDataControlPickListItem">
+            <summary>
+            拾取列表项控件数据配置
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.GameInventoryUI.Data.GameDataControlPickListItem.ItemWidth">
+            <summary>
+            物品宽度
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.GameInventoryUI.Data.GameDataControlPickListItem.ItemHeight">
+            <summary>
+            物品高度
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.GameInventoryUI.Data.GameDataControlPickListItem.SlotSize">
+            <summary>
+            槽位大小
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.GameInventoryUI.Data.GameDataControlPickListItem.NameFontSize">
+            <summary>
+            物品名称字体大小
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.GameInventoryUI.Data.GameDataControlPickListItem.QualityFontSize">
+            <summary>
+            品质文字字体大小
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.GameInventoryUI.Data.GameDataControlPickListItem.CategoryFontSize">
+            <summary>
+            分类文字字体大小
+            </summary>
+        </member>
+        <member name="T:GameSystemUI.GameInventoryUI.Data.GameDataControlSlotListUI">
+            <summary>
+            槽位列表UI控件数据配置
+            </summary>
+        </member>
+        <member name="T:GameSystemUI.GameInventoryUI.Primitive.AbilitySlotUI">
+            <summary>
+            技能物品格子UI类 - 集成了施法摇杆功能的物品格子
+            当QuickBar锁定时，如果格子内有物品且物品有ActiveAbility，则显示技能摇杆
+            当QuickBar解锁时，恢复为普通物品格子
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.GameInventoryUI.Primitive.AbilitySlotUI.IsAbilityMode">
+            <summary>
+            是否处于技能模式
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.GameInventoryUI.Primitive.AbilitySlotUI.CurrentAbilityExecute">
+            <summary>
+            当前绑定的技能执行器
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.GameInventoryUI.Primitive.AbilitySlotUI.UpdateUI">
+            <summary>
+            重写UpdateUI方法，在更新物品显示的同时更新技能绑定
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.GameInventoryUI.Primitive.AbilitySlotUI.UpdateAbilityBinding">
+            <summary>
+            更新技能绑定，另外由于可能存在的同步延迟，需要在父控件监听技能变化手动绑定
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.GameInventoryUI.Primitive.AbilitySlotUI.UpdateAbilityMode">
+            <summary>
+            更新技能模式
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.GameInventoryUI.Primitive.AbilitySlotUI.UpdateModeDisplay">
+            <summary>
+            更新模式显示
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.GameInventoryUI.Primitive.AbilitySlotUI.BindKey">
+            <summary>
+            设置键盘绑定（用于键盘控制）
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.GameInventoryUI.Primitive.AbilitySlotUI.HasActiveAbility">
+            <summary>
+            检查当前格子是否有可用技能
+            </summary>
+        </member>
+        <member name="T:GameSystemUI.GameInventoryUI.Primitive.DefaultInventoryUI">
+            背包UI类，用于显示和管理单位身上的背包(没考虑背包数量变化)
+        </member>
+        <member name="T:GameSystemUI.GameInventoryUI.Primitive.PickListItem">
+            <summary>
+            拾取列表物品项UI，包含左侧SlotUI和右侧文本信息
+            </summary>
+        </member>
+        <member name="T:GameSystemUI.GameInventoryUI.Primitive.PickList">
+            <summary>
+            物品拾取列表
+            </summary>
+        </member>
+        <member name="T:GameSystemUI.GameInventoryUI.Primitive.QuickBarUI">
+            快捷物品栏UI类
+        </member>
+        <member name="P:GameSystemUI.MoveKeyBoard.Data.GameDataControlMoveKeyBoard.UseMainUnit">
+            <summary>
+            是否绑定主控单位模式
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.MoveKeyBoard.Data.GameDataControlMoveKeyBoard.AutoLayoutManualChildren">
+            <summary>
+            手动添加的子控件是否参与自动布局
+            true: 手动添加的子控件会参与自动布局排版
+            false: 手动添加的子控件保持原有位置，不参与自动布局
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.MoveKeyBoard.Primitive.MoveKeyBoard.UseMainUnit">
+            <summary>
+            是否绑定主控单位模式
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.MoveKeyBoard.Primitive.MoveKeyBoard.BindUnit">
+            <summary>
+            绑定的单位
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.MoveKeyBoard.Primitive.MoveKeyBoard.OnMainUnitChanged(System.Object,GameCore.Event.EventPlayerMainUnitChanged)">
+            <summary>
+            主控单位变化事件处理
+            </summary>
+        </member>
+        <member name="T:GameSystemUI.Localization.LocalizationSetup">
+            <summary>
+            本地化设置管理器 - 负责整个程序集的资源管理器配置
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.Localization.LocalizationSetup.Initialize">
+            <summary>
+            初始化本地化资源管理器
+            </summary>
+        </member>
+        <member name="T:GameSystemUI.Localization.LocalizationInitializer">
+            <summary>
+            本地化初始化器 - 在游戏启动时自动注册资源管理器
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.Localization.LocalizationInitializer.OnRegisterGameClass">
+            <summary>
+            注册游戏类，设置本地化初始化时机
+            </summary>
+        </member>
+        <member name="T:GameSystemUI.Toast.ToastConfig">
+            <summary>
+            Toast消息配置
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.Toast.ToastConfig.Message">
+            <summary>
+            消息文本
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.Toast.ToastConfig.Duration">
+            <summary>
+            显示时长（毫秒）
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.Toast.ToastConfig.TextColor">
+            <summary>
+            文本颜色
+            </summary>
+        </member>
+        <member name="T:GameSystemUI.Toast.ToastManager">
+            <summary>
+            Toast管理器 - 单例模式管理所有Toast显示
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.Toast.ToastManager.Instance">
+            <summary>
+            获取Toast实例
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.Toast.ToastManager.Show(System.String,System.Int32,System.Nullable{System.Drawing.Color})">
+            <summary>
+            显示Toast
+            </summary>
+            <param name="message">消息内容</param>
+            <param name="duration">显示时长（毫秒）</param>
+            <param name="textColor">文本颜色</param>
+        </member>
+        <member name="M:GameSystemUI.Toast.ToastManager.Show(GameSystemUI.Toast.ToastConfig)">
+            <summary>
+            显示自定义配置的Toast
+            </summary>
+            <param name="config">Toast配置</param>
+        </member>
+        <member name="M:GameSystemUI.Toast.ToastManager.ProcessQueue">
+            <summary>
+            处理Toast队列
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.Toast.ToastManager.Clear">
+            <summary>
+            清空Toast队列并隐藏当前Toast
+            </summary>
+        </member>
+        <member name="T:GameSystemUI.Toast.Toast">
+            <summary>
+            Toast消息显示组件（内部使用）
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.Toast.Toast.Time">
+            <summary>
+            获取或设置Toast显示时长（毫秒）
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.Toast.Toast.Message">
+            <summary>
+            获取或设置Toast消息的文本
+            </summary>
+        </member>
+        <member name="P:GameSystemUI.Toast.Toast.TextColor">
+            <summary>
+            获取或设置Toast消息的文本颜色
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.Toast.Toast.#ctor">
+            <summary>
+            Toast构造函数
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.Toast.Toast.ShowInternal(GameSystemUI.Toast.ToastConfig,System.Action)">
+            <summary>
+            内部显示方法
+            </summary>
+            <param name="config">Toast配置</param>
+            <param name="onCompleted">完成回调</param>
+        </member>
+        <member name="M:GameSystemUI.Toast.Toast.Hide">
+            <summary>
+            立即隐藏Toast
+            </summary>
+        </member>
+    </members>
+</doc>

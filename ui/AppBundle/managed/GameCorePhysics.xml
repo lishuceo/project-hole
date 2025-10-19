@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GameCorePhysics</name>
+    </assembly>
+    <members>
+        <member name="T:GameCorePhysics.Actor.PhysicsActor">
+            <summary>
+            物理Actor
+            </summary>
+        </member>
+        <member name="M:GameCorePhysics.Actor.PhysicsActor.#ctor">
+            <summary>
+            默认构造函数
+            </summary>
+        </member>
+        <member name="M:GameCorePhysics.Actor.PhysicsActor.#ctor(GameCore.PlayerAndUsers.Player,GameData.IGameLink{GameCore.EntitySystem.Data.GameDataUnit},GameCore.SceneSystem.Scene,System.Numerics.Vector3,System.Numerics.Vector3)">
+            <summary>
+            物理Actor构造函数
+            </summary>
+            <param name="unitLink">数编 Link </param>
+            <param name="scene">场景</param>
+            <param name="position">位置</param>
+            <param name="rotation">旋转（欧拉角）</param>
+        </member>
+        <member name="M:GameCorePhysics.Actor.PhysicsActor.ApplyForce(System.Numerics.Vector3)">
+            <summary>
+            施加力
+            </summary>
+            <param name="force">力</param>
+        </member>
+        <member name="M:GameCorePhysics.Actor.PhysicsActor.ApplyImpulse(System.Numerics.Vector3)">
+            <summary>
+            施加动量
+            </summary>
+            <param name="impulse">动量</param>
+        </member>
+        <member name="M:GameCorePhysics.Actor.PhysicsActor.ApplyPhysicsAttribute">
+            <summary>
+            应用修改的物理属性
+            </summary>
+        </member>
+        <member name="M:GameCorePhysics.Actor.PhysicsActor.DestroyImmediately(GameCorePhysics.Actor.PhysicsActor)">
+            <summary>
+            立即销毁物理Actor
+            </summary>
+            <param name="actor"></param>
+        </member>
+        <member name="M:GameCorePhysics.Actor.PhysicsActor.GetPrimitiveLink(GameCore.Shape.Data.PrimitiveShape)">
+            <summary>
+            获取基础形状的数据Link
+            </summary>
+            <param name="shape"></param>
+            <returns></returns>
+        </member>
+        <member name="T:GameCorePhysics.Actor.PhysicsActorProxy">
+            <summary>
+            代理单位，让单位拥有调用物理操作的能力
+            </summary>
+        </member>
+        <member name="T:GameCorePhysics.Core.PhysicsGame">
+            <summary>
+            物理游戏基类
+            </summary>
+        </member>
+        <member name="M:GameCorePhysics.Core.PhysicsGame.GetGameMode">
+            <summary>
+            子类继承，返回游戏模式
+            </summary>
+            <returns>游戏模式Link</returns>
+        </member>
+        <member name="M:GameCorePhysics.Core.PhysicsGame.GetGameScene">
+            <summary>
+            子类继承，返回初始场景
+            </summary>
+            <returns>场景Link</returns>
+        </member>
+        <member name="M:GameCorePhysics.Core.PhysicsGame.GetCamera">
+            <summary>
+            子类继承，返回相机
+            </summary>
+            <returns>相机Link</returns>
+        </member>
+        <member name="M:GameCorePhysics.Core.PhysicsGame.OnSetup">
+            <summary>
+            子类继承，实现子类自己启动相关的工作
+            </summary>
+        </member>
+    </members>
+</doc>

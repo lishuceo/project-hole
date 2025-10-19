@@ -59,12 +59,12 @@ public class BlackHoleGame : IGameClass, IThinker
         Game.Logger.LogInformation("🕳️ Initializing Black Hole Game...");
 
 #if CLIENT
-        // Setup camera
-        SetupCamera();
-
-        // Create black hole controller
+        // Create black hole controller first (creates the unit)
         blackHoleController = new BlackHoleController();
         blackHoleController.Initialize();
+
+        // Setup camera to follow the black hole unit
+        SetupCameraFollowUnit();
 
         // Create object spawner
         objectSpawner = new ObjectSpawner(blackHoleController);
@@ -80,29 +80,31 @@ public class BlackHoleGame : IGameClass, IThinker
 
 #if CLIENT
     /// <summary>
-    /// Setup camera for 3D physics view
+    /// Setup camera for static top-down view
+    /// Since we can't create Unit on client, camera won't auto-follow
+    /// Will manually update camera in Think() loop to follow black hole
     /// </summary>
-    private void SetupCamera()
+    private void SetupCameraFollowUnit()
     {
         var camera = GameUI.Device.DeviceInfo.PrimaryViewport.Camera;
 
-        // Position: Behind and above (0, -30, 25) for top-down isometric view
+        // Initial camera position (will update in Think loop to follow black hole)
         camera.SetPosition(
-            new System.Numerics.Vector3(0, -800, 600),  // Perspective view from above
+            new System.Numerics.Vector3(0, -150, 120),  // Initial position above origin
             TimeSpan.FromSeconds(0.1)
         );
 
-        // Rotation: Looking down at angle
+        // Set camera rotation for isometric top-down view
         camera.SetRotation(
             new GameCore.CameraSystem.Struct.CameraRotation(
-                yaw: -90f,    // Face forward (north)
-                pitch: -60f,  // Look down at angle
+                yaw: 0f,      // Face north
+                pitch: -50f,  // Look down at angle (50 degrees)
                 roll: 0f
             ),
             TimeSpan.FromSeconds(0.1)
         );
 
-        Game.Logger.LogInformation("📷 Camera setup complete");
+        Game.Logger.LogInformation("📷 Camera setup complete at initial position (0, -150, 120)");
     }
 #endif
 
@@ -123,6 +125,29 @@ public class BlackHoleGame : IGameClass, IThinker
 
         // Update object spawner (respawn logic)
         objectSpawner?.Update(deltaSeconds);
+
+        // Update camera to follow black hole (manual follow since no Unit.FollowTarget)
+        UpdateCameraFollow();
 #endif
     }
+
+#if CLIENT
+    /// <summary>
+    /// Manually update camera to follow black hole position
+    /// </summary>
+    private void UpdateCameraFollow()
+    {
+        if (blackHoleController == null) return;
+
+        var camera = GameUI.Device.DeviceInfo.PrimaryViewport.Camera;
+        var blackHolePos = blackHoleController.Position;
+
+        // Camera follows black hole with fixed offset
+        var cameraOffset = new System.Numerics.Vector3(0, -150, 120);
+        camera.SetPosition(
+            blackHolePos + cameraOffset,
+            TimeSpan.FromSeconds(0.1)
+        );
+    }
+#endif
 }

@@ -4,6 +4,7 @@ using System.Numerics;
 using GameCore;
 using GameCore.PlayerAndUsers;
 using GameCore.SceneSystem;
+using GameCore.EntitySystem;
 using GameCorePhysics.Actor;
 using EngineInterface.Urho3DInterface;
 using GameUI.Device;
@@ -12,12 +13,12 @@ using GameUI.TriggerEvent;
 namespace GameEntry.BlackHoleGame;
 
 /// <summary>
-/// Controls the black hole physics actor and movement
-/// Implements mouse-to-world position tracking and smooth movement
+/// Controls the player's black hole unit and movement
+/// Uses WasiCore Unit system for proper camera follow and player control
 /// </summary>
 public class BlackHoleController
 {
-    // Physics
+    // Physics components
     private PhysicsActor blackHoleActor;
     private Node blackHoleNode;
     private RigidBody rigidBody;
@@ -34,43 +35,46 @@ public class BlackHoleController
 
     public void Initialize()
     {
-        Game.Logger.LogInformation("🕳️ Initializing black hole...");
+        Game.Logger.LogInformation("🕳️ Initializing black hole PhysicsActor (client-only, no Unit)...");
 
-        // Get the scene
+        // Get scene
         var scene = Scene.Get("blackhole_scene"u8);
 
-        // Create black hole as sphere PhysicsActor
+        // Create PhysicsActor directly using PrimitiveShape (not Unit!)
+        // Units cannot be created on client - use standalone PhysicsActor
         blackHoleActor = new PhysicsActor(
             Player.LocalPlayer,
-            PhysicsActor.GetPrimitiveLink(PrimitiveShape.Sphere),
+            PhysicsActor.GetPrimitiveLink(PrimitiveShape.Sphere),  // Primitive, not UnitLink
             scene,
-            new Vector3(0, 0, 0),  // Start at center
+            new Vector3(0, 0, 25),  // Start above ground
             Vector3.Zero
         );
 
+        // Get node and setup physics
         blackHoleNode = blackHoleActor.GetNode();
-        blackHoleNode.localScale = new Vector3(1, 1, 1);
+        blackHoleNode.localScale = new Vector3(3, 3, 3);  // Make it bigger for visibility
 
-        // Setup physics
-        rigidBody = blackHoleNode.GetComponent<RigidBody>();
+        rigidBody = blackHoleNode?.GetComponent<RigidBody>();
+
         if (rigidBody != null)
         {
             rigidBody.SetUseGravity(false);
-            rigidBody.SetMass(100f);
-            rigidBody.SetCollisionLayer(1u);  // LAYER_BLACKHOLE
-            rigidBody.SetCollisionMask(0xFFFFFFFF);
+            rigidBody.SetCollisionLayer(1u);  // Main unit default layer = 1
+            rigidBody.SetCollisionMask(0xFFFFFFFF); // Main unit default mask = all
 
-            // Make it a trigger (no physical collision) using collision filter
-            // Return true = ignore collision (pass through), but still trigger OnTriggerEnter
+            // Make it pass through all objects using collision filter
             rigidBody.SetCollisionFilter(new RigidBody.CollisionFilter((RigidBody other, Vector3 contact) =>
             {
-                return true; // Pass through all objects
+                return true; // Pass through all, but still trigger OnTriggerEnter
             }));
         }
 
         // Add custom component for trigger detection
-        blackHoleComponent = new BlackHoleComponent(this);
-        blackHoleNode.CreateComponent<BlackHoleComponent>();
+        if (blackHoleNode != null)
+        {
+            blackHoleComponent = blackHoleNode.CreateComponent<BlackHoleComponent>();
+            blackHoleComponent.SetController(this);
+        }
 
         // Register for mouse input
         RegisterInputHandler();
@@ -78,7 +82,7 @@ public class BlackHoleController
         // Initialize target position
         targetWorldPosition = Position;
 
-        Game.Logger.LogInformation("🕳️ Black hole created at {Pos}, size: {Size}", Position, CurrentSize);
+        Game.Logger.LogInformation("🕳️ Black hole PhysicsActor created at {Pos}, size: {Size}", Position, CurrentSize);
     }
 
     private void RegisterInputHandler()
@@ -103,7 +107,7 @@ public class BlackHoleController
         {
             targetWorldPosition = rayResult.Position;
             // Keep Z at 0 (ground level)
-            targetWorldPosition = new Vector3(targetWorldPosition.X, targetWorldPosition.Y, 0);
+            targetWorldPosition = new Vector3(targetWorldPosition.X, targetWorldPosition.Y, 25);
         }
     }
 
@@ -120,7 +124,7 @@ public class BlackHoleController
         {
             targetWorldPosition = rayResult.Position;
             // Keep Z at 0 (ground level)
-            targetWorldPosition = new Vector3(targetWorldPosition.X, targetWorldPosition.Y, 0);
+            targetWorldPosition = new Vector3(targetWorldPosition.X, targetWorldPosition.Y, 25);
         }
     }
 
@@ -142,7 +146,7 @@ public class BlackHoleController
             float speedMultiplier = GetSpeedMultiplier();
             float speed = BASE_SPEED * speedMultiplier;
 
-            // Set velocity to move toward target
+            // Set velocity to move toward target (physics-based)
             rigidBody.SetLinearVelocity(direction * speed);
         }
         else
@@ -182,8 +186,8 @@ public class BlackHoleController
     {
         if (blackHoleNode == null) return;
 
-        // Scale based on current size (base size is 50)
-        float scale = CurrentSize / 50f;
+        // Scale based on current size (base size is 50, initial scale is 3)
+        float scale = (CurrentSize / 50f) * 3f;
         blackHoleNode.localScale = new Vector3(scale, scale, scale);
     }
 
@@ -215,11 +219,6 @@ public class BlackHoleController
     {
         return objectSize <= (CurrentSize * 0.85f);
     }
-
-    public PhysicsActor GetActor()
-    {
-        return blackHoleActor;
-    }
 }
 
 /// <summary>
@@ -233,13 +232,15 @@ public class BlackHoleComponent : ScriptComponent
     {
     }
 
-    public BlackHoleComponent(BlackHoleController ctrl)
+    public void SetController(BlackHoleController ctrl)
     {
         controller = ctrl;
     }
 
     public override void OnTriggerEnter(Node otherNode)
     {
+        if (controller == null) return;
+
         // Get swallowable object component
         var swallowable = otherNode.GetComponent<SwallowableObject>();
         if (swallowable == null) return;

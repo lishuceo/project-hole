@@ -8,7 +8,9 @@
       "mcp__sce-tools__compile",
       "mcp__sce-tools__debug",
       "mcp__sce-tools__pull_game_log",
-      "Read(//c/Users/jljia/.sce/pulled_log/clientlog/lua/**)"
+      "Read(//c/Users/jljia/.sce/pulled_log/clientlog/lua/**)",
+      "Bash(dotnet build:*)",
+      "Bash(mcp__sce-tools__compile:*)"
     ],
     "deny": [],
     "ask": []

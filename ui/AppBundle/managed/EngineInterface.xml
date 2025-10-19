@@ -1,0 +1,1478 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EngineInterface</name>
+    </assembly>
+    <members>
+        <member name="P:EngineInterface.BaseInterface.IListItemRecord.UserId">
+            <summary>
+            Gets the unique identifier for the user.
+            </summary>
+        </member>
+        <member name="P:EngineInterface.BaseInterface.IListItemRecord.ListKey">
+            <summary>
+            Gets the unique key of the list that this item belongs to. This key is used to identify the list in which the item is stored.
+            </summary>
+        </member>
+        <member name="P:EngineInterface.BaseInterface.IListItemRecord.ItemUUID">
+            <summary>
+            Gets the unique identifier for the list item. The UUID is universally unique across all lists and users, which means it can be used to query or reference this item across different contexts.
+            </summary>
+        </member>
+        <member name="P:EngineInterface.BaseInterface.IListItemRecord.ValueSpan">
+            <summary>
+            Gets a read-only span of bytes representing the value.
+            </summary>
+            <remarks>This property is useful for scenarios where direct access to the raw byte representation of
+            the value is required, such as serialization, hashing, or low-level processing. The caller should ensure the
+            span is not accessed after the owning object is disposed or goes out of scope.</remarks>
+        </member>
+        <member name="P:EngineInterface.BaseInterface.IListItemRecord.LastUpdateTime">
+            <summary>
+            The last update time of the list item record, it will be reported as a local DateTime using the local timezone.
+            </summary>
+        </member>
+        <member name="P:EngineInterface.BaseInterface.IMoverDataOrbit.OrbitAngularVelocity">
+            <summary>
+            The orbital angular velocity that controls how fast the entity orbits around the target.
+            </summary>
+            <remarks>
+            This defines the angular velocity for orbital movement around the target, measured in degrees per second.
+            Positive values create counterclockwise orbit, negative values create clockwise orbit.
+            </remarks>
+        </member>
+        <member name="P:EngineInterface.BaseInterface.IMoverDataOrbit.OrbitRadius">
+            <summary>
+            The orbit radius that defines the distance from the target center to the orbiting entity.
+            </summary>
+            <remarks>
+            This determines how far from the target the entity will orbit. The radius can be dynamic,
+            allowing for spiral movements or changing orbital distances over time.
+            </remarks>
+        </member>
+        <member name="P:EngineInterface.BaseInterface.IMoverDataOrbit.OrbitRelativeToTargetFacing">
+            <summary>
+            Whether the orbital angle should be offset by the orbit target's facing direction.
+            </summary>
+            <remarks>
+            When true, the orbital position will be calculated relative to the target's current facing direction,
+            causing the orbit to rotate with the target. When false, the orbit maintains fixed world coordinates.
+            </remarks>
+        </member>
+        <member name="P:EngineInterface.BaseInterface.IMoverDataOrbit.SelfRotationRate">
+            <summary>
+            The self-rotation rate that controls how fast the orbiting entity rotates around its own axis.
+            </summary>
+            <remarks>
+            This defines the angular velocity for the entity's self-rotation while orbiting, measured in degrees per second.
+            Self-rotation is independent of orbital movement and can create spinning effects during orbit.
+            </remarks>
+        </member>
+        <member name="P:EngineInterface.BaseInterface.IMoverDataOrbit.SelfRotationRelativeToTarget">
+            <summary>
+            Whether the entity's self-rotation should be offset by the orbit target's facing direction.
+            </summary>
+            <remarks>
+            When true, the entity's self-rotation will be relative to the orbit target's current facing direction,
+            creating synchronized rotational behavior. When false, self-rotation uses absolute world coordinates.
+            </remarks>
+        </member>
+        <member name="P:EngineInterface.BaseInterface.IMoverDataOrbit.InitialFacing">
+            <summary>
+            The initial facing direction for the orbiting entity when it begins orbital movement.
+            </summary>
+            <remarks>
+            When specified, determines the starting orientation of the orbiting entity. If null, the entity
+            retains its current facing direction when orbit begins. This can be used to ensure consistent
+            starting positions for orbital effects or formations.
+            </remarks>
+        </member>
+        <member name="P:EngineInterface.BaseInterface.IMoverDataOrbit.OrbitHeight">
+            <summary>
+            The orbital height that defines the vertical offset of the orbiting entity relative to the target.
+            </summary>
+            <remarks>
+            This controls the height at which the entity orbits around the target. Combined with <see cref="P:EngineInterface.BaseInterface.IMoverDataOrbit.HeightRelativeToTarget"/>,
+            it allows for both absolute and relative height positioning in orbital movement patterns.
+            </remarks>
+        </member>
+        <member name="P:EngineInterface.BaseInterface.IMoverDataOrbit.HeightRelativeToTarget">
+            <summary>
+            Whether the orbit height is calculated relative to the target's height.
+            </summary>
+            <remarks>
+            When true, <see cref="P:EngineInterface.BaseInterface.IMoverDataOrbit.OrbitHeight"/> represents an offset relative to the target's current height position.
+            When false, it represents an absolute world height coordinate for the orbital plane.
+            </remarks>
+        </member>
+        <member name="P:EngineInterface.BaseInterface.IMoverDataOrbit.AlwaysVisibleToOrbitTarget">
+            <summary>
+            Whether the orbiting entity should always remain visible to the orbit target.
+            </summary>
+            <remarks>
+            When true, even if the orbiting entity is of another team or faction, it will remain visible to the target.
+            </remarks>
+        </member>
+        <member name="P:EngineInterface.BaseInterface.IUserCappedDataRecord.LastUpdateTime">
+            <summary>
+            Get the last update time of the record, this includes the time when the record was reset by the reset option.
+            This uses the local time zone of the server.
+            </summary>
+        </member>
+        <member name="P:EngineInterface.BaseInterface.IUserCurrencyRecord.Value">
+            <summary>
+            The value of the currency record.
+            </summary>
+        </member>
+        <member name="P:EngineInterface.BaseInterface.IUserDataBatchQueryResult.IKeyValueBlob.ValueSpan">
+            <summary>
+            Gets a read-only span of bytes representing the value.
+            </summary>
+        </member>
+        <member name="P:EngineInterface.BaseType.AnimationBracketPlayParam.Priority">
+            <summary>
+            动画的优先级。
+            </summary>
+            <remarks>
+            当 Actor 上有多个动画实例共存时，优先级越高的动画会取胜并转入播放状态，其余动画则会被压制。
+            </remarks>
+        </member>
+        <member name="P:EngineInterface.BaseType.AnimationPlayParam.Priority">
+            <summary>
+            动画的优先级。
+            </summary>
+            <remarks>
+            当 Actor 上有多个动画实例共存时，优先级越高的动画会取胜并转入播放状态，其余动画则会被压制。
+            </remarks>
+        </member>
+        <member name="P:EngineInterface.BaseType.AnimationPlayParam.BlendIn">
+            <summary>
+            动画的混入时间。
+            </summary>
+            <remarks>
+            不管是当一个动画结束播放，另一个动画因此成为最高优先级的动画而“浮现”时，或者一个旧动画实例被新的优先级更高的动画实例压制时，又或者是用户动态修改了动画的优先级而导致一个被压制的动画重新“浮现”时——在任何两个浮现在表面的动画进行交接的时候，引擎不会突兀地将一个前一个动画切换到后一个动画，而是会在一小段时间内将两个动画混合到一起，平滑地过度到新的动画中。
+            通过设置混合时间参数，用户可以指定动画实例作为新动画浮现时与旧动画之间的混合时间，单位为秒。该参数若不填写，则默认为0.15秒。设置为0可令动画立刻切换。
+            </remarks>
+            <example>
+            典型应用案例：如果用户的模型有一个躺着睡觉的动画和一个站立动画，却没有一个从站立到躺下的动画，那么用户可以在播放睡觉动画实例时将混合时间参数设为一个较长的值，如2秒。这样，当动画实例播放时，单位模型就会在2秒内从站立慢慢地转变为躺下状态，使用户可以低成本地实现一个从站立到躺下的动画。
+            </example>
+        </member>
+        <member name="T:EngineInterface.BaseType.CloudDataValue">
+            <summary>
+            表示云数据的值，支持字符串和数字类型
+            </summary>
+            <remarks>
+            这个结构体提供了类型安全的方式来存储和访问云数据值，
+            支持隐式转换和显式转换，确保数据类型的一致性。
+            </remarks>
+        </member>
+        <member name="P:EngineInterface.BaseType.CloudDataValue.Type">
+            <summary>
+            值的类型
+            </summary>
+        </member>
+        <member name="P:EngineInterface.BaseType.CloudDataValue.VarCharValue">
+            <summary>
+            最大长度为255的UTF8字符串值（当类型为VarChar255时）
+            </summary>
+        </member>
+        <member name="P:EngineInterface.BaseType.CloudDataValue.BigIntValue">
+            <summary>
+            数字值（当类型为BigInt时）
+            </summary>
+        </member>
+        <member name="P:EngineInterface.BaseType.CloudDataValue.BlobValue">
+            <summary>
+            Blob数据值 (当类型为Blob时)
+            </summary>
+        </member>
+        <member name="M:EngineInterface.BaseType.CloudDataValue.#ctor(System.String)">
+            <summary>
+            创建字符串类型的云数据值
+            </summary>
+            <param name="value">字符串值</param>
+        </member>
+        <member name="M:EngineInterface.BaseType.CloudDataValue.#ctor(System.Int32)">
+            <summary>
+            创建整数类型的云数据值
+            </summary>
+            <param name="value">整数值</param>
+        </member>
+        <member name="M:EngineInterface.BaseType.CloudDataValue.#ctor(System.Int64)">
+            <summary>
+            创建数字类型的云数据值
+            </summary>
+            <param name="value">长整数值</param>
+        </member>
+        <member name="M:EngineInterface.BaseType.CloudDataValue.op_Implicit(System.String)~EngineInterface.BaseType.CloudDataValue">
+            <summary>
+            隐式转换：从字符串创建CloudDataValue
+            </summary>
+            <param name="value">字符串值</param>
+            <returns>CloudDataValue实例</returns>
+        </member>
+        <member name="M:EngineInterface.BaseType.CloudDataValue.op_Implicit(System.Int32)~EngineInterface.BaseType.CloudDataValue">
+            <summary>
+            隐式转换：从int创建CloudDataValue
+            </summary>
+            <param name="value">整数值</param>
+            <returns>CloudDataValue实例</returns>
+        </member>
+        <member name="M:EngineInterface.BaseType.CloudDataValue.op_Implicit(System.Int64)~EngineInterface.BaseType.CloudDataValue">
+            <summary>
+            隐式转换：从long创建CloudDataValue
+            </summary>
+            <param name="value">长整数值</param>
+            <returns>CloudDataValue实例</returns>
+        </member>
+        <member name="M:EngineInterface.BaseType.CloudDataValue.op_Explicit(EngineInterface.BaseType.CloudDataValue)~System.String">
+            <summary>
+            显式转换：转换为字符串
+            </summary>
+            <param name="value">CloudDataValue实例</param>
+            <returns>字符串值</returns>
+            <exception cref="T:System.InvalidCastException">当类型是BigInt时抛出</exception>
+        </member>
+        <member name="M:EngineInterface.BaseType.CloudDataValue.op_Explicit(EngineInterface.BaseType.CloudDataValue)~System.Int32">
+            <summary>
+            显式转换：转换为int
+            </summary>
+            <param name="value">CloudDataValue实例</param>
+            <returns>整数值</returns>
+            <exception cref="T:System.InvalidCastException">当类型确定，且不是BigInt时抛出</exception>
+        </member>
+        <member name="M:EngineInterface.BaseType.CloudDataValue.op_Explicit(EngineInterface.BaseType.CloudDataValue)~System.Int64">
+            <summary>
+            显式转换：转换为long
+            </summary>
+            <param name="value">CloudDataValue实例</param>
+            <returns>长整数值</returns>
+            <exception cref="T:System.InvalidCastException">当类型确定，且不是BigInt时抛出</exception>
+        </member>
+        <member name="M:EngineInterface.BaseType.CloudDataValue.ToString">
+            <summary>
+            获取值的字符串表示
+            </summary>
+            <returns>字符串表示</returns>
+        </member>
+        <member name="M:EngineInterface.BaseType.CloudDataValue.Equals(EngineInterface.BaseType.CloudDataValue)">
+            <summary>
+            检查两个CloudDataValue是否相等
+            </summary>
+            <param name="other">另一个CloudDataValue</param>
+            <returns>是否相等</returns>
+        </member>
+        <member name="M:EngineInterface.BaseType.CloudDataValue.Equals(System.Object)">
+            <summary>
+            检查与另一个对象是否相等
+            </summary>
+            <param name="obj">另一个对象</param>
+            <returns>是否相等</returns>
+        </member>
+        <member name="M:EngineInterface.BaseType.CloudDataValue.GetHashCode">
+            <summary>
+            获取哈希码
+            </summary>
+            <returns>哈希码</returns>
+        </member>
+        <member name="M:EngineInterface.BaseType.CloudDataValue.op_Equality(EngineInterface.BaseType.CloudDataValue,EngineInterface.BaseType.CloudDataValue)">
+            <summary>
+            相等运算符
+            </summary>
+            <param name="left">左操作数</param>
+            <param name="right">右操作数</param>
+            <returns>是否相等</returns>
+        </member>
+        <member name="M:EngineInterface.BaseType.CloudDataValue.op_Inequality(EngineInterface.BaseType.CloudDataValue,EngineInterface.BaseType.CloudDataValue)">
+            <summary>
+            不等运算符
+            </summary>
+            <param name="left">左操作数</param>
+            <param name="right">右操作数</param>
+            <returns>是否不相等</returns>
+        </member>
+        <member name="T:EngineInterface.BaseType.CloudDataValueType">
+            <summary>
+            云数据值的类型枚举
+            </summary>
+        </member>
+        <member name="F:EngineInterface.BaseType.CloudDataValueType.Unknown">
+            <summary>
+            当从云数据中获取数据时，云数据的类型未知，需要从数据中解析。
+            </summary>
+        </member>
+        <member name="F:EngineInterface.BaseType.CloudDataValueType.VarChar255">
+            <summary>
+            变长UTF8字符类型，最大长度为255个字符。对应常见的SQL VARCHAR(255)。
+            </summary>
+        </member>
+        <member name="F:EngineInterface.BaseType.CloudDataValueType.BigInt">
+            <summary>
+            64位长整型，通常用于存储数字或整数值。对应常见的SQL BIGINT。
+            </summary>
+        </member>
+        <member name="F:EngineInterface.BaseType.CloudDataValueType.Blob">
+            <summary>
+            二进制大对象类型，通常用于存储任意二进制数据。对应常见的SQL BLOB。
+            </summary>
+        </member>
+        <member name="F:EngineInterface.BaseType.CloudDataValueType.ListItem">
+            <summary>
+            列表项类型，通常用于存储列表或集合数据。相同Key的多个值可以存储为列表项。每个列表项都有一个唯一的UUID。
+            BlobValue用于存储列表项的值，BigIntValue用于标识列表项UUID。
+            </summary>
+        </member>
+        <member name="F:EngineInterface.BaseType.CloudDataValueType.ClaimedName">
+            <summary>
+            名称类型，通常用于存储用户或实体的名称。可以是用户自定义的名称或系统生成的名称。被占用的名称在删除前无法被重复占用。
+            </summary>
+        </member>
+        <member name="T:EngineInterface.BaseType.CoreActorType">
+            <summary>
+            Defines the core types of actors in the engine's actor system, used for categorization and behavior management.
+            </summary>
+            <remarks>
+            This enum categorizes the fundamental actor types within the engine, allowing systems to apply
+            type-specific logic, optimizations, and management strategies. Each type represents a different
+            category of game object with distinct lifecycle and synchronization requirements.
+            </remarks>
+        </member>
+        <member name="F:EngineInterface.BaseType.CoreActorType.Unit">
+            <summary>
+            Represents a unit actor, which is the default and most common actor type.
+            </summary>
+            <remarks>
+            Unit actors represent game entities such as characters, creatures, vehicles, and other
+            interactive objects in the game world. They typically have health, abilities, and can
+            participate in gameplay mechanics.
+            </remarks>
+        </member>
+        <member name="F:EngineInterface.BaseType.CoreActorType.Game">
+            <summary>
+            Represents a game-level actor that manages global game state and functionality.
+            </summary>
+            <remarks>
+            Game actors handle game-wide systems such as rules, victory conditions, global events,
+            and other high-level game management functionality that affects the entire match or session.
+            </remarks>
+        </member>
+        <member name="F:EngineInterface.BaseType.CoreActorType.Player">
+            <summary>
+            Represents a player actor that manages individual player state and interactions.
+            </summary>
+            <remarks>
+            Player actors handle player-specific functionality such as input processing, UI state,
+            player statistics, inventory management, and other player-centric systems.
+            </remarks>
+        </member>
+        <member name="F:EngineInterface.BaseType.CoreActorType.ActorScopePersist">
+            <summary>
+            Represents a persistent actor scope that maintains long-term actor group management.
+            </summary>
+            <remarks>
+            Persistent actor scopes manage groups of actors that need to maintain their state
+            and relationships across game sessions or significant game state changes.
+            </remarks>
+        </member>
+        <member name="T:EngineInterface.BaseType.TransactionOperation">
+            <summary>
+            事务操作
+            </summary>
+            <remarks>
+            表示事务中的单个操作，包含操作类型、键、值等信息。
+            </remarks>
+        </member>
+        <member name="P:EngineInterface.BaseType.TransactionOperation.Type">
+            <summary>
+            操作类型
+            </summary>
+        </member>
+        <member name="P:EngineInterface.BaseType.TransactionOperation.Key">
+            <summary>
+            数据键，小于180个字符的UTF8字符串
+            </summary>
+        </member>
+        <member name="P:EngineInterface.BaseType.TransactionOperation.Value">
+            <summary>
+            数据值
+            </summary>
+        </member>
+        <member name="P:EngineInterface.BaseType.TransactionOperation.NewCap">
+            <summary>
+            条件值（仅用于 CappedModify 操作，使增加后的数值不大于限制值）
+            </summary>
+        </member>
+        <member name="M:EngineInterface.BaseType.TransactionOperation.SetBlob(System.Int64,System.String,System.Byte[])">
+            <summary>
+            创建设置Blob操作
+            </summary>
+            <param name="userId">用户ID</param>
+            <param name="key">数据键</param>
+            <param name="data">数据值</param>
+            <returns>事务操作</returns>
+        </member>
+        <member name="M:EngineInterface.BaseType.TransactionOperation.DeleteBlob(System.Int64,System.String)">
+            <summary>
+            创建删除Blob操作
+            </summary>
+            <param name="userId">用户ID</param>
+            <param name="key">数据键</param>
+            <returns>事务操作</returns>
+        </member>
+        <member name="M:EngineInterface.BaseType.TransactionOperation.UpdateListItem(System.Int64,System.Int64,System.Byte[])">
+            <summary>
+            Creates a transaction operation to update a list item with the specified item ID and data.
+            </summary>
+            <param name="userId">用户ID</param>
+            <param name="itemId">The globally unique identifier of the list item to update.</param>
+            <param name="data">The data to associate with the list item. Cannot be null.</param>
+            <returns>A <see cref="T:EngineInterface.BaseType.TransactionOperation"/> representing the operation to update the list item.</returns>
+        </member>
+        <member name="M:EngineInterface.BaseType.TransactionOperation.SetVarChar255(System.Int64,System.String,System.String)">
+            <summary>
+            创建设置字符串（VarChar255）操作
+            </summary>
+            <param name="userId">用户ID</param>
+            <param name="key">数据键</param>
+            <param name="value">字符串值</param>
+            <returns>事务操作</returns>
+        </member>
+        <member name="M:EngineInterface.BaseType.TransactionOperation.DeleteVarChar255(System.Int64,System.String)">
+            <summary>
+            创建删除字符串（VarChar255）操作
+            </summary>
+            <param name="userId">用户ID</param>
+            <param name="key">数据键</param>
+            <returns>事务操作</returns>
+        </member>
+        <member name="M:EngineInterface.BaseType.TransactionOperation.SetBigInt(System.Int64,System.String,System.Int64)">
+            <summary>
+            创建设置整数（BigInt）操作
+            </summary>
+        </member>
+        <member name="M:EngineInterface.BaseType.TransactionOperation.AddBigInt(System.Int64,System.String,System.Int64)">
+            <summary>
+            创建增加整数（BigInt）操作
+            </summary>
+            <param name="userId">用户ID</param>
+            <param name="key">数据键</param>
+            <param name="delta">增加的数值</param>
+            <returns>事务操作</returns>
+        </member>
+        <member name="M:EngineInterface.BaseType.TransactionOperation.DeleteBigInt(System.Int64,System.String)">
+            <summary>
+            创建删除整数（BigInt）操作
+            </summary>
+            <param name="userId">用户ID</param>
+            <param name="key">数据键</param>
+            <returns>事务操作</returns>
+        </member>
+        <member name="M:EngineInterface.BaseType.TransactionOperation.AddCurrency(System.Int64,System.String,System.Int64)">
+            <summary>
+            创建货币增加操作
+            </summary>
+            <param name="userId">用户ID</param>
+            <param name="key">货币键</param>
+            <param name="amount">增加的金额</param>
+            <returns>事务操作</returns>
+        </member>
+        <member name="M:EngineInterface.BaseType.TransactionOperation.CostCurrency(System.Int64,System.String,System.Int64)">
+            <summary>
+            创建货币消耗操作，货币无法被消耗到负数，否则会使事物执行失败。
+            </summary>
+            <param name="userId">用户ID</param>
+            <param name="key">货币键</param>
+            <param name="amount">消耗的金额</param>
+            <returns>事务操作</returns>
+        </member>
+        <member name="M:EngineInterface.BaseType.TransactionOperation.ListItemAdd(System.Int64,System.String,System.Int64,System.Byte[])">
+            <summary>
+            创建添加列表项操作
+            </summary>
+            <param name="userId">用户ID</param>
+            <param name="key">列表键</param>
+            <param name="itemId">列表项ID</param>
+            <param name="data">列表项数据</param>
+            <returns>事务操作</returns>
+        </member>
+        <member name="M:EngineInterface.BaseType.TransactionOperation.DeleteListItem(System.Int64,System.Int64)">
+            <summary>
+            创建删除列表项操作
+            </summary>
+            <param name="userId">用户ID</param>
+            <param name="itemId">全局唯一的列表项ID</param>
+            <returns>事务操作</returns>
+        </member>
+        <member name="M:EngineInterface.BaseType.TransactionOperation.MoveListItem(System.Int64,System.Int64,System.String)">
+            <summary>
+            创建移动列表项操作，将列表项从一个列表移动到另一个列表
+            </summary>
+            <param name="userId">用户ID</param>
+            <param name="itemId">全局唯一的列表项ID</param>
+            <param name="newListKey">目标列表的键名</param>
+            <returns>事务操作</returns>
+        </member>
+        <member name="M:EngineInterface.BaseType.TransactionOperation.ClaimNewName(System.String,System.String,System.String)">
+            <summary>
+            创建新名称操作，名称无法被重复创建。用于实现玩家自定义名称的占用机制。
+            名称可以附带描述，描述为长度限制为255的UTF8字符串。名称不隶属于任何用户，它们的 key 是全局的。
+            已占用的名称可以通过 DeleteName 操作进行删除。
+            </summary>
+            <param name="userId">用户ID</param>
+            <param name="key">名称键</param>
+            <param name="newName">名称，长度限制为180</param>
+            <param name="description">附加数据，长度限制为255</param>
+            <returns>事务操作</returns>
+        </member>
+        <member name="M:EngineInterface.BaseType.TransactionOperation.DeleteName(System.String,System.String)">
+            <summary>
+            创建删除已声明名称操作
+            </summary>
+            <param name="key">名称类别键</param>
+            <param name="name">要删除的名称</param>
+            <returns>事务操作</returns>
+        </member>
+        <member name="M:EngineInterface.BaseType.TransactionOperation.ResetCapped(System.Int64,System.String)">
+            <summary>
+            重置有上限的数据，将当前值重置为0。
+            </summary>
+            <param name="userId">用户ID</param>
+            <param name="key">数据键</param>
+            <returns>事务操作</returns>
+        </member>
+        <member name="P:EngineInterface.BaseType.UserDataResetOption.IsWeekly">
+            <summary>
+            Returns true if the reset option is for weekly resets.
+            </summary>
+        </member>
+        <member name="P:EngineInterface.BaseType.UserDataResetOption.IsValid">
+            <summary>
+            Checks if the current option is valid.
+            </summary>
+        </member>
+        <member name="M:EngineInterface.BaseType.UserDataResetOption.ToString">
+            <summary>
+            Returns a friendly string representation of the reset option.
+            </summary>
+        </member>
+        <member name="M:EngineInterface.BaseType.UserDataResetOption.GetNextResetTime(System.DateTime)">
+            <summary>
+            Calculates the next reset time based on the current time.
+            </summary>
+        </member>
+        <member name="M:EngineInterface.BaseType.UserDataResetOption.Hourly(System.Int32)">
+            <summary>
+            创建一个每X小时重置一次的选项。重置时机基于第一次设置值的时间对齐到下一个整点，并以 interval 为步长递增。
+            例如：interval=2，第一次设置在3:59，则下次重置为5:00、7:00、9:00等。
+            </summary>
+            <remarks>
+            注意：如果更改重置周期类型（如从Hourly改为Weekly），则以更改时刻为新的基准点重新计算重置时间。
+            </remarks>
+            <param name="interval">重置的小时间隔，必须大于0。</param>
+        </member>
+        <member name="M:EngineInterface.BaseType.UserDataResetOption.Daily(System.Int32)">
+            <summary>
+            创建一个每X天重置一次的选项。重置时机为每天的0点（本地时间），首次重置点基于第一次设置值的日期对齐。
+            例如：interval=3，第一次设置在1号，则重置点为4号、7号等0点。
+            </summary>
+            <remarks>
+            注意：如果更改重置周期类型，则以更改时刻为新的基准点重新计算重置时间。
+            </remarks>
+            <param name="interval">重置的天数间隔，必须大于0。</param>
+        </member>
+        <member name="M:EngineInterface.BaseType.UserDataResetOption.Weekly(System.Int32,System.DayOfWeek)">
+            <summary>
+            创建一个每X周的指定周几重置的选项。重置时机为该天的0点（本地时间），首次重置点基于第一次设置值的周对齐。
+            例如：interval=2, dayOfWeek=Monday，第一次设置在某周三，则下一个重置为下下周一0点。
+            </summary>
+            <remarks>
+            注意：如果更改重置周期类型，则以更改时刻为新的基准点重新计算重置时间。
+            </remarks>
+            <param name="interval">重置的周数间隔，必须大于0。</param>
+            <param name="dayOfWeek">指定的周几（如Monday）。</param>
+        </member>
+        <member name="M:EngineInterface.BaseType.UserDataResetOption.Monthly(System.Int32)">
+            <summary>
+            创建一个每X月重置一次的选项。重置时机为每月的1号0点（本地时间），首次重置点基于第一次设置值的月份对齐。
+            例如：interval=2，第一次设置在1月，则重置点为3月1日、5月1日等0点。
+            </summary>
+            <remarks>
+            注意：如果更改重置周期类型，则以更改时刻为新的基准点重新计算重置时间。
+            </remarks>
+            <param name="interval">重置的月数间隔，必须大于0。</param>
+        </member>
+        <member name="M:EngineInterface.BaseType.UserDataResetOption.Yearly(System.Int32)">
+            <summary>
+            创建一个每X年重置一次的选项。重置时机为每年的1月1日0点（本地时间），首次重置点基于第一次设置值的年份对齐。
+            例如：interval=3，第一次设置在2024年，则重置点为2027/1/1、2030/1/1等0点。
+            </summary>
+            <remarks>
+            注意：如果更改重置周期类型，则以更改时刻为新的基准点重新计算重置时间。
+            </remarks>
+            <param name="interval">重置的年数间隔，必须大于0。</param>
+        </member>
+        <member name="P:EngineInterface.BaseType.UserDataResetOption.Never">
+            <summary>
+            获取一个永不重置的选项。
+            </summary>
+        </member>
+        <member name="T:EngineInterface.BaseType.VarChar180">
+            <summary>
+            Represents a UTF8 string value with a maximum length of 180. It mimics the behavior of a VARCHAR(180) in SQL databases.
+            </summary>
+            <remarks>This struct is designed to enforce a maximum length constraint of 180 for string values.
+            It is commonly used in scenarios where database or API fields require such a restriction.
+            Empty or whitespace-only strings are not allowed.</remarks>
+        </member>
+        <member name="T:EngineInterface.BaseType.VarChar255">
+            <summary>
+            Represents a UTF8 string value with a maximum length of 255 characters. It mimics the behavior of a VARCHAR(255) in SQL databases.
+            </summary>
+            <remarks>This struct is designed to enforce a maximum length constraint of 255 characters for string values.
+            It is commonly used in scenarios where database or API fields require such a restriction.</remarks>
+        </member>
+        <member name="F:EngineInterface.Enum.AnimationBodyPart.FullBody">
+            <summary>
+            指定的动画可能会影响模型的全身。
+            </summary>
+        </member>
+        <member name="F:EngineInterface.Enum.AnimationBodyPart.UpperBody">
+            <summary>
+            指定的动画只会影响模型的上半身。
+            </summary>
+            <remarks>
+            模型表现的“上半身”和“下半身”取决于模型数据的 UpperBodyRootBone 字段所指定的骨骼。
+            </remarks>
+        </member>
+        <member name="F:EngineInterface.Enum.AnimationBodyPart.LowerBody">
+            <summary>
+            指定的动画只会影响模型的下半身。
+            </summary>
+            <remarks>
+            模型表现的“上半身”和“下半身”取决于模型数据的 UpperBodyRootBone 字段所指定的骨骼。 
+            </remarks>
+        </member>
+        <member name="T:EngineInterface.Enum.AnimationLogicLayer">
+            <summary>
+            逻辑层本质上是另一个层面的动画优先级，拥有着一些内置逻辑用于播放内置动画。动画系统会先考虑层级参数再考虑优先级参数。
+            </summary>
+        </member>
+        <member name="F:EngineInterface.Enum.AnimationLogicLayer.Rollback">
+            <summary>
+            上层没有动画播放时，都会回滚到这里，主要包含待机、移动等
+            </summary>
+            <remarks>
+            优先度最低的层级，只有当常规层和无限制层中没有任何动画时才会被播放。只有当多个动画实例都被设置为回滚层，且优先级不同时，
+            这些动画之间才会考虑优先级参数。
+            默认的移动和待机动画属于回滚层，且优先级为0，因此大部分触发器播放的动画实例都可以压制移动和待机动画的播放。
+            </remarks>
+        </member>
+        <member name="F:EngineInterface.Enum.AnimationLogicLayer.Normal">
+            <summary>
+            用来播放标准动画。内置一些优先级顶替逻辑。
+            </summary>
+            <remarks>
+            优先度一般的层级。触发器播放的动画若不设置逻辑层参数，则默认会在这一层播放。此外，技能施法动画也默认处于这一层级。
+            </remarks>
+        </member>
+        <member name="F:EngineInterface.Enum.AnimationLogicLayer.Unrestricted">
+            <summary>
+            可以随意播放动画不受限制
+            </summary>
+            <remarks>
+            优先度最高的层级。没有任何内置动画会处于这一层级，因此在这一层级的触发器动画必定会被播放出来，不会受到内置动画的压制。
+            但这些动画彼此之间依然还会受到优先级参数的影响来决定谁会“浮现”，谁会被“压制”。
+            </remarks>
+        </member>
+        <member name="F:EngineInterface.Enum.AnimationLogicLayer.LowerBody">
+            <summary>
+            用于类似骑马等需要维持下半身姿势的动画。
+            </summary>
+            <remarks>
+            如果动画参数中设置了下半身动画, 那么该动画的逻辑层会自动修正为下半身动画层。因此多数时候不需要手动设置。
+            </remarks>
+        </member>
+        <member name="T:EngineInterface.Enum.AnimationStateEvent">
+            <summary>
+            Represents the types of events that can occur for an animation.
+            </summary>
+        </member>
+        <member name="F:EngineInterface.Enum.AnimationStateEvent.Suppressed">
+            <summary>
+            The animation was suppressed by another animation with higher priority or logic layer.
+            </summary>
+        </member>
+        <member name="F:EngineInterface.Enum.AnimationStateEvent.Surfaced">
+            <summary>
+            The animation has become active, either by being played alone on its actor or by no longer being suppressed.
+            </summary>
+        </member>
+        <member name="F:EngineInterface.Enum.AnimationStateEvent.Completed">
+            <summary>
+            The animation has finished playing.
+            </summary>
+        </member>
+        <member name="F:EngineInterface.Enum.AnimationStateEvent.Removed">
+            <summary>
+            The animation was removed from the system, either by being stopped or because its actor was removed.
+            </summary>
+        </member>
+        <member name="T:EngineInterface.Enum.TransactionOperationType">
+            <summary>
+            事务操作类型
+            </summary>
+        </member>
+        <member name="F:EngineInterface.Enum.UserCloudDataResult.TooManyReadOperations">
+            <summary>
+            Indicates that the count of read operations has exceeded the allowed limit during a period of time.
+            </summary>
+        </member>
+        <member name="F:EngineInterface.Enum.UserCloudDataResult.TooManyWriteOperations">
+            <summary>
+            Indicates that the count of write operations has exceeded the allowed limit during a period of time.
+            </summary>
+        </member>
+        <member name="F:EngineInterface.Enum.UserCloudDataResult.FailedToSend">
+            <summary>
+            Indicates that the request to the cloud server failed to send.
+            </summary>
+        </member>
+        <member name="F:EngineInterface.Enum.UserCloudDataResult.QueryUserIdMissing">
+            <summary>
+            Represents an error code indicating that a required user ID is missing in the query.
+            </summary>
+            <remarks>This error code is typically returned when an operation expects a user ID to be provided, 
+            but it is either null, empty, or not included in the request.</remarks>
+        </member>
+        <member name="F:EngineInterface.Enum.UserCloudDataResult.QueryKeyMissing">
+            <summary>
+            Indicates that a required query key is missing in the query parameters.
+            </summary>
+        </member>
+        <member name="F:EngineInterface.Enum.UserCloudDataResult.TransactionCommitEmpty">
+            <summary>
+            Represents an error code indicating that a transaction commit operation was attempted with no changes to commit.
+            </summary>
+            <remarks>This error code is typically used to signal that a transaction commit operation failed
+            because the transaction contained no modifications or operations to persist.</remarks>
+        </member>
+        <member name="F:EngineInterface.Enum.UserCloudDataResult.InsufficientCurrency">
+            <summary>
+            货币金额不足，无法完成操作。
+            </summary>
+        </member>
+        <member name="F:EngineInterface.Enum.UserCloudDataResult.MessageSizeTooLarge">
+            <summary>
+            The message size exceeds the 32MB limit.
+            </summary>
+        </member>
+        <member name="F:EngineInterface.Enum.UserCloudDataResult.ListItemNotFoundForUserKey">
+            <summary>
+            Indicates that the specified list item UUID does not exist in the list associated with the given key and user ID, but may exist in the database.
+            </summary>
+        </member>
+        <member name="F:EngineInterface.Enum.UserCloudDataResult.CapExceeded">
+            <summary>
+            上限数据值超出设定的上限，无法完成操作。通常发生在 ModifyCappedData 操作中。
+            </summary>
+        </member>
+        <member name="P:EngineInterface.Enum.UserCloudDataResult`1.IsSuccess">
+            <summary>
+            Indicates whether the operation was successful (Result == Success) and Data is available.
+            </summary>
+        </member>
+        <member name="P:EngineInterface.Enum.UserCloudDataResult`1.Result">
+            <summary>
+            The result code of the cloud data operation.
+            </summary>
+        </member>
+        <member name="P:EngineInterface.Enum.UserCloudDataResult`1.Data">
+            <summary>
+            The data returned by the operation, if successful. Null if the operation failed.
+            </summary>
+        </member>
+        <member name="M:EngineInterface.Enum.UserCloudDataResult`1.#ctor(`0)">
+            <summary>
+            Creates a successful result with the specified data.
+            </summary>
+            <param name="data">The data returned by the operation.</param>
+        </member>
+        <member name="M:EngineInterface.Enum.UserCloudDataResult`1.#ctor(EngineInterface.Enum.UserCloudDataResult)">
+            <summary>
+            Creates a result with the specified result code (failure or special case).
+            </summary>
+            <param name="result">The result code.</param>
+        </member>
+        <member name="M:EngineInterface.Enum.UserCloudDataResult`1.op_Implicit(EngineInterface.Enum.UserCloudDataResult)~EngineInterface.Enum.UserCloudDataResult{`0}">
+            <summary>
+            Implicit conversion from result code to UserCloudDataResult&lt;T&gt; (failure or special case).
+            </summary>
+        </member>
+        <member name="M:EngineInterface.Enum.UserCloudDataResult`1.op_Implicit(`0)~EngineInterface.Enum.UserCloudDataResult{`0}">
+            <summary>
+            Implicit conversion from data to UserCloudDataResult&lt;T&gt; (success).
+            </summary>
+        </member>
+        <member name="M:EngineInterface.Enum.UserCloudDataResult`1.op_Implicit(EngineInterface.Enum.UserCloudDataResult{`0})~EngineInterface.Enum.UserCloudDataResult">
+            <summary>
+            Implicit conversion from UserCloudDataResult&lt;T&gt; to result code.
+            </summary>
+        </member>
+        <member name="M:EngineInterface.Enum.UserCloudDataResult`1.op_Implicit(EngineInterface.Enum.UserCloudDataResult{`0})~`0">
+            <summary>
+            Implicit conversion from UserCloudDataResult&lt;T&gt; to data (may be null if not successful).
+            </summary>
+        </member>
+        <member name="M:EngineInterface.Enum.UserCloudDataResult`1.ToString">
+            <summary>
+            Returns a string representation of the result. If successful, returns the data; otherwise, returns the result code.
+            </summary>
+        </member>
+        <member name="M:EngineInterface.Enum.UserCloudDataResult`1.GetHashCode">
+            <summary>
+            Returns a hash code for the result.
+            </summary>
+        </member>
+        <member name="M:EngineInterface.Enum.UserCloudDataResult`1.Equals(System.Object)">
+            <summary>
+            Determines whether the specified object is equal to the current result.
+            </summary>
+        </member>
+        <member name="M:EngineInterface.Enum.UserCloudDataResult`1.op_Equality(EngineInterface.Enum.UserCloudDataResult{`0},EngineInterface.Enum.UserCloudDataResult{`0})">
+            <summary>
+            Equality operator for UserCloudDataResult&lt;T&gt;.
+            </summary>
+        </member>
+        <member name="M:EngineInterface.Enum.UserCloudDataResult`1.op_Inequality(EngineInterface.Enum.UserCloudDataResult{`0},EngineInterface.Enum.UserCloudDataResult{`0})">
+            <summary>
+            Inequality operator for UserCloudDataResult&lt;T&gt;.
+            </summary>
+        </member>
+        <member name="F:EngineInterface.Enum.UserDataResetPeriod.Hourly">
+            <summary>
+            每X小时重置一次，注意重置时机是每小时的整点
+            </summary>
+        </member>
+        <member name="F:EngineInterface.Enum.UserDataResetPeriod.Daily">
+            <summary>
+            每X天重置一次，注意重置时机是每天的0点
+            </summary>
+        </member>
+        <member name="F:EngineInterface.Enum.UserDataResetPeriod.Weekly">
+            <summary>
+            每X周重置一次，需要结合具体的周几来使用，注意重置时机是每周的0点
+            </summary>
+        </member>
+        <member name="F:EngineInterface.Enum.UserDataResetPeriod.Monthly">
+            <summary>
+            每X月重置一次，注意重置时机是每月的1号
+            </summary>
+        </member>
+        <member name="F:EngineInterface.Enum.UserDataResetPeriod.Yearly">
+            <summary>
+            每X年重置一次，注意重置时机是每年的1月1日
+            </summary>
+        </member>
+        <member name="F:EngineInterface.Enum.UserDataResetPeriod.Never">
+            <summary>
+            永不重置
+            </summary>
+        </member>
+        <member name="P:EngineInterface.GoInterface.IViewAnimation.IsEngineAnimation">
+            <summary>
+            Gets if this animation is created by the engine instead of the game logic.
+            e.g., animations created by the engine for character movement, idle and death animations, or animation 
+            instances created by the animation sequence system.
+            </summary>
+        </member>
+        <member name="M:EngineInterface.GoInterface.IViewAsyncActor.SetImpactSite(EngineInterface.GoInterface.IViewAsyncActor,EngineCommon.UTF8String)">
+            <summary>
+            For ActorAction Only
+            </summary>
+            <param name="actor"></param>
+            <param name="socket"></param>
+            <returns></returns>
+        </member>
+        <member name="E:EngineInterface.GoInterface.IViewGame.OnTick">
+            <param>int: delta time in milliseconds</param>
+        </member>
+        <member name="M:EngineInterface.GoInterface.IViewGame.SimpleOut">
+            <summary>
+            Simply calls a function of the host game engine.
+            </summary>
+        </member>
+        <member name="M:EngineInterface.GoInterface.IViewGame.SimpleInTest(System.Int32)">
+            <summary>
+            Ask the host game engine to call the framework count times.
+            </summary>
+            <param name="count"></param>
+        </member>
+        <member name="M:EngineInterface.GoInterface.IViewScene.SearchRectangle(EngineInterface.GoInterface.IScenePoint,System.Single,System.Numerics.Vector2)">
+            <summary>
+            Search in a rectangle
+            </summary>
+            <param name="position"></param>
+            <param name="facing"></param>
+            <param name="size">
+            X is width, Y is length
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.IEngineObjectGetter.GetNode">
+            <summary>
+            获取根Node
+            </summary>
+            <returns>Node对象</returns>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.IEngineObjectGetter.GetModelMaterials">
+            <summary>
+            获取模型组件的材质
+            </summary>
+            <returns>材质列表</returns>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.IEngineObjectGetter.GetOwnerPhysicsWorld">
+            <summary>
+            获取所属的物理世界
+            </summary>
+            <returns>物理世界对象</returns>
+        </member>
+        <member name="T:EngineInterface.Urho3DInterface.Graphics.PrimitiveType">
+            <summary>
+            Primitive type.
+            </summary>
+        </member>
+        <member name="T:EngineInterface.Urho3DInterface.Graphics.BlendMode">
+            <summary>
+            Blending mode.
+            </summary>
+        </member>
+        <member name="T:EngineInterface.Urho3DInterface.Graphics.CompareMode">
+            <summary>
+            Depth or stencil compare mode.
+            </summary>
+        </member>
+        <member name="T:EngineInterface.Urho3DInterface.Graphics.CullMode">
+            <summary>
+            Culling mode.
+            </summary>
+        </member>
+        <member name="T:EngineInterface.Urho3DInterface.Graphics.FillMode">
+            <summary>
+            Fill mode.
+            </summary>
+        </member>
+        <member name="T:EngineInterface.Urho3DInterface.Graphics.StencilOp">
+            <summary>
+            Stencil operation.
+            </summary>
+        </member>
+        <member name="T:EngineInterface.Urho3DInterface.Graphics.StencilState">
+            <summary>
+            Stencil state
+            </summary>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.Material.SetFloat(System.String,System.Single)">
+            <summary>
+            设置材质参数
+            </summary>
+            <param name="propertyName">材质参数名</param>
+            <param name="value">材质参数值（float)</param>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.Material.GetFloat(System.String)">
+            <summary>
+            获取材质参数
+            </summary>
+            <param name="propertyName">材质参数名</param>
+            <returns>材质参值</returns>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.Material.SetFloat(System.UInt32,System.Single)">
+            <summary>
+            设置材质参数
+            </summary>
+            <param name="propertyName">材质参id</param>
+            <param name="value">材质参数值(float)</param>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.Material.GetFloat(System.UInt32)">
+            <summary>
+            获取材质参数
+            </summary>
+            <param name="propertyId">材质参数id</param>
+            <returns>材质参值</returns>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.Material.SetVector(System.String,System.Numerics.Vector4)">
+            <summary>
+            设置材质参数
+            </summary>
+            <param name="propertyName">材质参数名</param>
+            <param name="value">材质参数值(Vector4)</param>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.Material.GetVector(System.String)">
+            <summary>
+            获取材质参数
+            </summary>
+            <param name="propertyName">材质参数名</param>
+            <returns>材质参数值</returns>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.Material.SetVector(System.UInt32,System.Numerics.Vector4)">
+            <summary>
+            设置材质参数
+            </summary>
+            <param name="propertyId">材质参数id</param>
+            <param name="value">材质参数值(Vector4)</param>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.Material.GetVector(System.UInt32)">
+            <summary>
+            获取材质参数
+            </summary>
+            <param name="propertyId">材质参数id</param>
+            <returns>材质参数值</returns>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.Material.SetColor(System.String,System.Drawing.Color)">
+            <summary>
+            设置材质参数
+            </summary>
+            <param name="propertyName">材质参数名</param>
+            <param name="value">材质参数值(Color)</param>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.Material.GetColor(System.String)">
+            <summary>
+            获取材质参数
+            </summary>
+            <param name="propertyName">材质参数名</param>
+            <returns>材质参数值</returns>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.Material.SetColor(System.UInt32,System.Drawing.Color)">
+            <summary>
+            设置材质参数
+            </summary>
+            <param name="propertyId">材质参数id</param>
+            <param name="value">材质参数值(Color)</param>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.Material.GetColor(System.UInt32)">
+            <summary>
+            获取材质参数
+            </summary>
+            <param name="propertyId">材质参数id</param>
+            <returns>材质参数值</returns>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.Material.SetStencilState(EngineInterface.Urho3DInterface.Graphics.StencilState)">
+            <summary>
+            设置材质模板状态
+            </summary>
+            <param name="stencilState">模板状态</param>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.Material.GetStencilState">
+            <summary>
+            获取材质模板状态
+            </summary>
+            <returns>材质模板状态</returns>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.Material.SetCullMode(EngineInterface.Urho3DInterface.Graphics.CullMode)">
+            <summary>
+            设置材质裁剪模式
+            </summary>
+            <param name="cullMode">裁剪模式</param>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.Material.GetCullMode">
+            <summary>
+            获取材质裁剪模式
+            </summary>
+            <returns>裁剪模式</returns>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.Material.SetFillMode(EngineInterface.Urho3DInterface.Graphics.FillMode)">
+            <summary>
+            设置材质的填充模式
+            </summary>
+            <param name="fillMode">填充模式</param>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.Material.GetFillMode">
+            <summary>
+            获取材质的填充模式
+            </summary>
+            <returns>填充模式</returns>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.Material.SetRenderOrder(System.UInt32)">
+            <summary>
+            设置材质的渲染优先级
+            </summary>
+            <param name="renderOrder">渲染优先级</param>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.Material.GetRenderOrder">
+            <summary>
+            获取材质渲染优先级
+            </summary>
+            <returns>渲染优先级</returns>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.Material.SetShaderPassEnabled(System.String,System.Boolean)">
+            <summary>
+            设置Shader pass是否可用
+            </summary>
+            <param name="passName">pass名</param>
+            <param name="enabled">是否可用</param>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.Material.SetShaderPassDepthWrite(System.String,System.Boolean)">
+            <summary>
+            设置Shader pass深度写
+            </summary>
+            <param name="passName">pass名</param>
+            <param name="depthWrite">深度写</param>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.Material.SetShaderPassColorWrite(System.String,System.Boolean)">
+            <summary>
+            设置Shader pass颜色写
+            </summary>
+            <param name="passName">pass名</param>
+            <param name="colorWrite">颜色写</param>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.Mesh.CreateCustomMesh(System.Numerics.Vector3[],System.UInt32[],EngineInterface.Urho3DInterface.Graphics.PrimitiveType)">
+            <summary>
+            创建自定义Mesh
+            </summary>
+            <param name="vertexArray">顶点数组(Vector3)</param>
+            <param name="indexArray">索引数组(uint)</param>
+            <param name="primitiveType">渲染图元类型</param>
+            <returns></returns>
+        </member>
+        <member name="P:EngineInterface.Urho3DInterface.PhysicsRaycastResult.Position">
+            <summary>
+            位置
+            </summary>
+        </member>
+        <member name="P:EngineInterface.Urho3DInterface.PhysicsRaycastResult.Normal">
+            <summary>
+            Hit worldspace normal.
+            </summary>
+        </member>
+        <member name="P:EngineInterface.Urho3DInterface.PhysicsRaycastResult.Distance">
+            <summary>
+            Hit distance from ray origin.
+            </summary>
+        </member>
+        <member name="P:EngineInterface.Urho3DInterface.PhysicsRaycastResult.HitFraction">
+            <summary>
+            Hit fraction.
+            </summary>
+        </member>
+        <member name="P:EngineInterface.Urho3DInterface.PhysicsRaycastResult.Body">
+            <summary>
+            Rigid body that was hit.
+            </summary>
+        </member>
+        <member name="P:EngineInterface.Urho3DInterface.PhysicsRaycastResult.BodyPtr">
+            <summary>
+            Rigid body native ptr that was hit.
+            </summary>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.PhysicsWorld.Raycast(System.Numerics.Vector3,System.Numerics.Vector3,System.Single,System.UInt32)">
+            <summary>
+            射线检测
+            </summary>
+            <param name="position">射线原点</param>
+            <param name="direction">射线矢量方向</param>
+            <param name="maxDistance">射线检测最大距离</param>
+            <param name="collisionMask">碰撞遮罩</param>
+            <returns>返回所有满足条件的结果</returns>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.PhysicsWorld.RaycastSingle(System.Numerics.Vector3,System.Numerics.Vector3,System.Single,System.UInt32)">
+            <summary>
+            射线检测
+            </summary>
+            <param name="position">射线原点</param>
+            <param name="direction">射线矢量方向</param>
+            <param name="maxDistance">射线检测最大距离</param>
+            <param name="collisionMask">碰撞遮罩</param>
+            <returns>返回距离最近的结果</returns>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.PhysicsWorld.SphereCast(System.Numerics.Vector3,System.Single,System.Numerics.Vector3,System.Single,System.UInt32)">
+            <summary>
+            球形检测
+            </summary>
+            <param name="origin">球中心点</param>
+            <param name="radius">球半径</param>
+            <param name="direction">方向</param>
+            <param name="maxDistance">检测最大距离</param>
+            <param name="collisionMask">碰撞遮罩</param>
+            <returns>返回距离最近的结果</returns>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.PhysicsWorld.GetRigidBodies(System.Numerics.Vector3,System.Single,System.UInt32)">
+            <summary>
+            查询球形范围内的刚体
+            </summary>
+            <param name="origin">球中心点</param>
+            <param name="radius">球半径</param>
+            <param name="collisionMask">碰撞遮罩</param>
+            <returns>刚体数组</returns>
+            <exception cref="T:System.NullReferenceException"></exception>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.PhysicsWorld.GetRigidBodies(System.Numerics.Vector3,System.Numerics.Vector3,System.UInt32)">
+            <summary>
+            查询Box范围内的刚体
+            </summary>
+            <param name="aabbMin">Box最小坐标</param>
+            <param name="aabbMax">Box最大坐标</param>
+            <param name="collisionMask">碰撞遮罩</param>
+            <returns>刚体数组</returns>
+            <exception cref="T:System.NullReferenceException"></exception>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.PlaneClippingShape.SetCircle(System.Numerics.Vector3,System.Single)">
+            <summary>
+            设置圆形裁剪
+            </summary>
+            <param name="center">圆形中心点</param>
+            <param name="radius">半径</param>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.PlaneClippingShape.SetRect(System.Numerics.Vector3,System.Numerics.Vector3)">
+            <summary>
+            设置矩形裁剪
+            </summary>
+            <param name="min">矩形最小位置</param>
+            <param name="max">矩形最大位置</param>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.RigidBody.ApplyForce(System.Numerics.Vector3)">
+            <summary>
+            施加力
+            </summary>
+            <param name="force">力</param>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.RigidBody.ApplyImpulse(System.Numerics.Vector3)">
+            <summary>
+            施加动量
+            </summary>
+            <param name="impluse">动量</param>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.RigidBody.SetLinearVelocity(System.Numerics.Vector3)">
+            <summary>
+            设置线性速度
+            </summary>
+            <param name="velocity">速度</param>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.RigidBody.GetLinearVelocity">
+            <summary>
+            获取线性速度
+            </summary>
+            <returns>速度</returns>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.RigidBody.SetAngularVelocity(System.Numerics.Vector3)">
+            <summary>
+            设置角速度
+            </summary>
+            <param name="velocity">速度</param>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.RigidBody.GetAngularVelocity">
+            <summary>
+            获取角速度
+            </summary>
+            <returns>速度</returns>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.RigidBody.SetMass(System.Single)">
+            <summary>
+            设置质量
+            </summary>
+            <param name="mass">质量</param>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.RigidBody.GetMass">
+            <summary>
+            获取质量
+            </summary>
+            <returns>质量</returns>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.RigidBody.SetLinearDamping(System.Single)">
+            <summary>
+            设置线性阻尼
+            </summary>
+            <param name="linearDamping">阻尼</param>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.RigidBody.GetLinearDamping">
+            <summary>
+            获取线性阻尼
+            </summary>
+            <returns>阻尼</returns>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.RigidBody.SetAngularDamping(System.Single)">
+            <summary>
+            设置角度阻尼
+            </summary>
+            <param name="angularDamping">阻尼</param>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.RigidBody.GetAngularDamping">
+            <summary>
+            获取角度阻尼
+            </summary>
+            <returns>阻尼</returns>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.RigidBody.SetUseGravity(System.Boolean)">
+            <summary>
+            设置是否使用重力
+            </summary>
+            <param name="flag">flag</param>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.RigidBody.GetUseGravity">
+            <summary>
+            获取是否使用重力
+            </summary>
+            <returns>flag</returns>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.RigidBody.SetCollisionLayer(System.UInt32)">
+            <summary>
+            设置碰撞层级
+            </summary>
+            <param name="collisionLayer">碰撞层级</param>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.RigidBody.GetCollisionLayer">
+            <summary>
+            获取碰撞层级
+            </summary>
+            <returns>碰撞层级</returns>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.RigidBody.SetCollisionMask(System.UInt32)">
+            <summary>
+            设置碰撞遮罩
+            </summary>
+            <param name="collisionMask">碰撞遮罩</param>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.RigidBody.GetCollisionMask">
+            <summary>
+            获取碰撞遮罩
+            </summary>
+            <returns>碰撞遮罩</returns>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.RigidBody.SetCollisionFilter(EngineInterface.Urho3DInterface.RigidBody.CollisionFilter)">
+            <summary>
+            设置碰撞点过滤器
+            </summary>
+            <param name="filter">过滤函数</param>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.ScriptComponent.OnStart">
+            <summary>
+            组件插入Node后调用
+            </summary>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.ScriptComponent.OnDelayedStart">
+            <summary>
+            组件插入场景后第一帧Update时调用
+            </summary>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.ScriptComponent.OnStop">
+            <summary>
+            组件从Node删除后调用
+            </summary>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.ScriptComponent.OnUpdate(System.Single)">
+            <summary>
+            帧Update
+            </summary>
+            <param name="timeStep">帧耗时</param>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.ScriptComponent.OnPostUpdate(System.Single)">
+            <summary>
+            帧PostUpdate
+            </summary>
+            <param name="timeStep">帧耗时</param>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.ScriptComponent.OnFixedUpdate(System.Single)">
+            <summary>
+            物理帧Update
+            </summary>
+            <param name="timeStep">帧耗时</param>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.ScriptComponent.OnFixedPostUpdate(System.Single)">
+            <summary>
+            物理帧PostUpdate
+            </summary>
+            <param name="timeStep">帧耗时</param>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.ScriptComponent.OnTriggerEnter(Node)">
+            <summary>
+            物体碰撞开始时调用
+            </summary>
+            <param name="node">碰撞的node</param>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.ScriptComponent.OnTriggerStay(Node)">
+            <summary>
+            物体碰撞持续调用
+            </summary>
+            <param name="node">碰撞的node</param>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.ScriptComponent.OnTriggerExit(Node)">
+            <summary>
+            物体碰撞结束调用
+            </summary>
+            <param name="node">碰撞的node</param>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.Shader.PropertyToID(System.String)">
+            <summary>
+            材质参数名字转id
+            </summary>
+            <param name="propertyName">材质参数名</param>
+            <returns>材质参数id</returns>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.Shader.Find(System.String)">
+            <summary>
+            从已有资产里查找Shader
+            </summary>
+            <param name="shaderName">shader名</param>
+            <returns>Shader对象</returns>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.StaticMeshComponent.SetMesh(EngineInterface.Urho3DInterface.Mesh)">
+            <summary>
+            设置Mesh
+            </summary>
+            <param name="mesh">Mesh对象</param>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.StaticMeshComponent.SetMaterial(EngineInterface.Urho3DInterface.Material)">
+            <summary>
+            设置材质
+            </summary>
+            <param name="material">材质对象</param>
+        </member>
+        <member name="M:EngineInterface.Urho3DInterface.Terrain.GetMaterials">
+            <summary>
+            获取地形材质
+            </summary>
+            <returns>材质列表</returns>
+        </member>
+        <member name="M:Node.CreateComponent``1">
+            <summary>
+            创建组件
+            </summary>
+            <typeparam name="T">组件类型</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Node.AddComponent``1(``0)">
+            <summary>
+            增加组件
+            </summary>
+            <typeparam name="T">组件类型</typeparam>
+            <param name="comp">组件对象</param>
+        </member>
+        <member name="M:Node.RemoveComponent``1(``0)">
+            <summary>
+            移除组件
+            </summary>
+            <typeparam name="T">组件类型</typeparam>
+            <param name="comp">组件对象</param>
+        </member>
+        <member name="M:Node.GetComponent``1">
+            <summary>
+            获取组件
+            </summary>
+            <typeparam name="T">组件类型</typeparam>
+            <returns>组件对象</returns>
+        </member>
+        <member name="P:Node.position">
+            <summary>
+            世界空间下的位置
+            </summary>
+        </member>
+        <member name="P:Node.localPosition">
+            <summary>
+            本地空间下的位置
+            </summary>
+        </member>
+        <member name="P:Node.localScale">
+            <summary>
+            本地空间下的缩放
+            </summary>
+        </member>
+    </members>
+</doc>

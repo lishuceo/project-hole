@@ -21,21 +21,22 @@ public class ObjectSpawner
     private const float SPAWN_AREA_SIZE = 1000f;  // Spawn within 1000 units of center
 
     // Object definitions (hardcoded for Phase 1)
+    // Scale increased 5x for better visibility
     private static readonly ObjectDefinition[] OBJECT_TYPES = new[]
     {
-        // Tiny objects
-        new ObjectDefinition("traffic_cone", PrimitiveShape.Cone, 15f, 2f, new Vector3(1f, 1f, 1.5f)),
-        new ObjectDefinition("small_box", PrimitiveShape.Cube, 18f, 3f, new Vector3(1f, 1f, 1f)),
-        new ObjectDefinition("ball", PrimitiveShape.Sphere, 12f, 2f, new Vector3(0.8f, 0.8f, 0.8f)),
-        new ObjectDefinition("bottle", PrimitiveShape.Cylinder, 20f, 3f, new Vector3(0.5f, 0.5f, 1.2f)),
-        new ObjectDefinition("rock", PrimitiveShape.Sphere, 14f, 2.5f, new Vector3(0.9f, 0.9f, 0.9f)),
+        // Tiny objects (scaled up 5x for visibility)
+        new ObjectDefinition("traffic_cone", PrimitiveShape.Cone, 15f, 2f, new Vector3(5f, 5f, 7.5f)),
+        new ObjectDefinition("small_box", PrimitiveShape.Cube, 18f, 3f, new Vector3(5f, 5f, 5f)),
+        new ObjectDefinition("ball", PrimitiveShape.Sphere, 12f, 2f, new Vector3(4f, 4f, 4f)),
+        new ObjectDefinition("bottle", PrimitiveShape.Cylinder, 20f, 3f, new Vector3(2.5f, 2.5f, 6f)),
+        new ObjectDefinition("rock", PrimitiveShape.Sphere, 14f, 2.5f, new Vector3(4.5f, 4.5f, 4.5f)),
 
-        // Small objects
-        new ObjectDefinition("barrel", PrimitiveShape.Cylinder, 45f, 7f, new Vector3(1.2f, 1.2f, 1.5f)),
-        new ObjectDefinition("crate", PrimitiveShape.Cube, 40f, 6f, new Vector3(1.5f, 1.5f, 1.5f)),
-        new ObjectDefinition("bench", PrimitiveShape.Cube, 55f, 8f, new Vector3(2f, 0.5f, 0.8f)),
-        new ObjectDefinition("trash_can", PrimitiveShape.Cylinder, 38f, 5.5f, new Vector3(0.8f, 0.8f, 1.8f)),
-        new ObjectDefinition("sign_post", PrimitiveShape.Cone, 32f, 5f, new Vector3(0.5f, 0.5f, 2f)),
+        // Small objects (scaled up 5x for visibility)
+        new ObjectDefinition("barrel", PrimitiveShape.Cylinder, 45f, 7f, new Vector3(6f, 6f, 7.5f)),
+        new ObjectDefinition("crate", PrimitiveShape.Cube, 40f, 6f, new Vector3(7.5f, 7.5f, 7.5f)),
+        new ObjectDefinition("bench", PrimitiveShape.Cube, 55f, 8f, new Vector3(10f, 2.5f, 4f)),
+        new ObjectDefinition("trash_can", PrimitiveShape.Cylinder, 38f, 5.5f, new Vector3(4f, 4f, 9f)),
+        new ObjectDefinition("sign_post", PrimitiveShape.Cone, 32f, 5f, new Vector3(2.5f, 2.5f, 10f)),
     };
 
     private BlackHoleController blackHoleController;
@@ -156,7 +157,7 @@ public class ObjectSpawner
         {
             float x = (float)(random.NextDouble() * SPAWN_AREA_SIZE * 2 - SPAWN_AREA_SIZE);
             float y = (float)(random.NextDouble() * SPAWN_AREA_SIZE * 2 - SPAWN_AREA_SIZE);
-            float z = objectSize / 2f;  // Start at half-height above ground
+            float z = 15f;  // Fixed height above ground for visibility
 
             Vector3 position = new Vector3(x, y, z);
 
@@ -176,7 +177,7 @@ public class ObjectSpawner
         return new Vector3(
             (float)(random.NextDouble() * 500 + 300),
             (float)(random.NextDouble() * 500 + 300),
-            objectSize / 2f
+            15f  // Fixed height for visibility
         );
     }
 

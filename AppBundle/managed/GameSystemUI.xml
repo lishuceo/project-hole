@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GameSystemUI</name>
+    </assembly>
+    <members>
+        <member name="T:GameSystemUI.ChatSystem.ChatSystem">
+            <summary>
+            ChatSystem 初始化类，负责注册聊天系统
+            </summary>
+        </member>
+        <member name="M:GameSystemUI.ChatSystem.ChatMessageServer.RegisterServerMessageHandlers">
+            <summary>
+            注册服务器消息处理器
+            </summary>
+        </member>
+    </members>
+</doc>

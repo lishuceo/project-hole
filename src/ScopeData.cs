@@ -128,6 +128,9 @@ public partial class ScopeData : IGameClass
         public static readonly GameLink<GameDataUnit, GameDataUnit> TDMonster = new("TDMonster"u8);
         public static readonly GameLink<GameDataUnit, GameDataUnit> TowerDefenseHero = new("TowerDefenseHero"u8);
 
+        // Black Hole Game Units
+        public static readonly GameLink<GameDataUnit, GameDataUnit> PlayerBlackHole = new("PlayerBlackHole"u8);
+
         // 形状测试单位
         public static readonly GameLink<GameDataUnit, GameDataUnit> ShapeTestSphere = new("ShapeTestSphere"u8);
         public static readonly GameLink<GameDataUnit, GameDataUnit> ShapeTestCube = new("ShapeTestCube"u8);
@@ -489,6 +492,22 @@ public partial class ScopeData : IGameClass
             DisplayDebugInfo = false, // 塔防模式不需要显示调试信息
             FollowMainUnitByDefault = false, // 塔防镜头通常固定位置
         };
+
+        // Black Hole Game - Player Black Hole Unit
+        _ = new GameDataUnit(Unit.PlayerBlackHole)
+        {
+            Name = "Player Black Hole",
+            AttackableRadius = 64f,
+            CollisionRadius = 50f,
+            PrimitiveShape = new PrimitiveShapeConfig
+            {
+                Shape = PrimitiveShape.Sphere,
+                Scale = new Vector3(3, 3, 3),  // Initial scale for visibility
+                ColorTheme = ShapeColorTheme.Standard,
+                ColorMode = ShapeColorMode.SmartDefaults
+            }
+        };
+
         // 注册形状测试单位
         _ = new GameDataUnit(Unit.ShapeTestSphere)
         {
@@ -1244,6 +1263,7 @@ public partial class ScopeData : IGameClass
             Gameplay = Gameplay.Default,
             PlayerSettings = PlayerSettings.Default,
             SceneList = [
+                Scene.DefaultScene,
                 Scene.BlackHoleScene,
             ],
             DefaultScene = Scene.BlackHoleScene,

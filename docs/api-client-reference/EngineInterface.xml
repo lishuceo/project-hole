@@ -2848,7 +2848,7 @@
             <param name="actorId"></param>
             <returns></returns>
         </member>
-        <member name="M:EngineInterface.PhysicsInterface.IPhysicsActorInterfaceCaller.GetModelMaterials(System.Int32)">
+        <member name="M:EngineInterface.PhysicsInterface.IInterfaceCaller.GetModelMaterials(System.Int32)">
             <summary>
             
             </summary>

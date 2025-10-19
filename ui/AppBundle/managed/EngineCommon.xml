@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EngineCommon</name>
+    </assembly>
+    <members>
+        <member name="T:EngineCommon.ArrayView`1">
+            <summary>
+            交互用数组视图
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="T:EngineCommon.ArrayViewRef`1">
+            <summary>
+            交互用数组视图 （引用版本）
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="T:EngineCommon.GCPinner">
+            <summary>
+            用于防止GC的内存固定器
+            </summary>
+        </member>
+        <member name="T:EngineCommon.StructView`1">
+            <summary>
+            交互用结构体视图
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:EngineCommon.UTF8String.ToRawString">
+            <summary>
+            转换为内存布局不变的原生字符串
+            </summary>
+        </member>
+        <member name="T:EngineCommon.UTF8StringView">
+            <summary>
+            交互用UTF8字符串视图
+            </summary>
+        </member>
+        <member name="T:EngineCommon.UTF8StringViewRef">
+            <summary>
+            交互用UTF8字符串视图（引用版）
+            </summary>
+        </member>
+    </members>
+</doc>
